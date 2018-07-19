@@ -1,6 +1,12 @@
+[workspace]
+members = [
+	"src/tesys/astrometry"
+]
+
 [package]
 name = "tesys-rs"
 version = "0.1.0"
 authors = ["Sam Morrell <samuelmorrell@gmail.com>"]
 
 [dependencies]
+tesys_astrometry = { path = "src/tesys/astrometry"}

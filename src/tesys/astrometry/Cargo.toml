@@ -1,0 +1,6 @@
+[package]
+name = "tesys_astrometry"
+version = "0.1.0"
+authors = ["Sam Morrell <samuelmorrell@gmail.com>"]
+
+[dependencies]
