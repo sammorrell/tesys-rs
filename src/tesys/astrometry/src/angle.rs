@@ -32,9 +32,14 @@ impl Angle {
 	}
 }
 
-
 impl Into<f32> for Angle {
 	fn into(self) -> f32 {
  		self._angle
+	}
+}
+
+impl Into<i8> for Angle {
+	fn into(self) -> i8 {
+		self._angle as i8
 	}
 }
