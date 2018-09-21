@@ -1,3 +1,7 @@
+#[macro_use]
+extern crate lazy_static;
+#[macro_use]
+extern crate tesys_loggable_derive;
 
 mod tesys;
 use tesys::astrometry::Angle;

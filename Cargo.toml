@@ -1,6 +1,7 @@
 [workspace]
 members = [
-	"src/tesys/astrometry"
+	"src/tesys/astrometry",
+	"src/tesys/loggable_derive"
 ]
 
 [package]
@@ -10,3 +11,5 @@ authors = ["Sam Morrell <samuelmorrell@gmail.com>"]
 
 [dependencies]
 tesys_astrometry = { path = "src/tesys/astrometry"}
+tesys_loggable_derive = { path = "src/tesys/loggable_derive"}
+lazy_static = "1.1.0"
