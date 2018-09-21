@@ -3,8 +3,6 @@ extern crate proc_macro;
 extern crate syn;
 #[macro_use]
 extern crate quote;
-#[macro_use]
-extern crate lazy_static;
 
 use proc_macro::TokenStream;
 
@@ -23,18 +21,18 @@ fn impl_loggable(ast: &syn::DeriveInput) -> TokenStream {
     let gen = quote! {
         impl Loggable for #name {
             fn log(str: &str) {
-                //self.LOGGABLE_MTX.lock();
-                println!("{}", format!("[ {} : {} ] {}", stringify!(#name), "Info", str));
+                LOGGABLE_MTX.lock();
+                println!("{}", format!("[ {} : {} ] {}", stringify!(#name).white().bold(), "Info".magenta().bold(), str.green()));
             }
 
             fn warn(str: &str) {
-                //self.LOGGABLE_MTX.lock();
-                println!("{}", format!("[ {} : {} ] {}", stringify!(#name), "Warning", str));
+                LOGGABLE_MTX.lock();
+                println!("{}", format!("[ {} : {} ] {}", stringify!(#name).white().bold(), "Warning".magenta().bold(), str.yellow()));
             }
 
             fn err(str: &str) {
-                //self.LOGGABLE_MTX.lock();
-                println!("{}", format!("[ {} : {} ] {}", stringify!(#name), "Error", str));
+                LOGGABLE_MTX.lock();
+                println!("{}", format!("[ {} : {} ] {}", stringify!(#name).white().bold(), "Error".magenta().bold(), str.red()));
             }
         }
     };
