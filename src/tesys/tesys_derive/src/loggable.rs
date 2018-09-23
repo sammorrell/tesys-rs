@@ -1,4 +1,3 @@
-use std::sync::Mutex;
 extern crate proc_macro;
 extern crate syn;
 
@@ -9,17 +8,17 @@ pub fn impl_loggable(ast: &syn::DeriveInput) -> TokenStream {
     let gen = quote! {
         impl Loggable for #name {
             fn log(str: &str) {
-                LOGGABLE_MTX.lock();
+                let _mtx = LOGGABLE_MTX.lock().unwrap();
                 println!("{}", format!("[ {} : {} ] {}", stringify!(#name).white().bold(), "Info".magenta().bold(), str.green()));
             }
 
             fn warn(str: &str) {
-                LOGGABLE_MTX.lock();
+                let _mtx = LOGGABLE_MTX.lock().unwrap();
                 println!("{}", format!("[ {} : {} ] {}", stringify!(#name).white().bold(), "Warning".magenta().bold(), str.yellow()));
             }
 
             fn err(str: &str) {
-                LOGGABLE_MTX.lock();
+                let _mtx = LOGGABLE_MTX.lock().unwrap();
                 println!("{}", format!("[ {} : {} ] {}", stringify!(#name).white().bold(), "Error".magenta().bold(), str.red()));
             }
         }
