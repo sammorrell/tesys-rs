@@ -1,6 +1,4 @@
-use std;
 use hms;
-use wrap_angle;
 
 pub struct Angle {
 	_angle: f32,
