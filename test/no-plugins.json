@@ -1,0 +1,11 @@
+{
+    "poll-rate" : 60,
+    "peer" : {
+        "name" : "test-peer",
+        "port" : 3000,
+        "discovery" : true
+    },
+    "plugin_dirs" : ["./cmake-build-debug/lib"],
+    "plugins" : {
+    }
+}

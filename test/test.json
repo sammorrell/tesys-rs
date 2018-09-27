@@ -1,0 +1,77 @@
+{
+    "poll-rate" : 60,
+    "peer" : {
+        "name" : "test-peer",
+        "port" : 3000,
+        "discovery" : true
+    },
+    "plugin_dirs" : ["./cmake-build-debug/lib"],
+    "plugins" : {
+        "example" : {
+            "instanceof" : "tesys-example-plugin"
+        },
+        "indi" : {
+            "instanceof" : "tesys-indi-plugin"
+        },
+        "webui" : {
+            "instanceof" : "tesys-web-ui"
+        },
+		"mount" : {
+            "instanceof" : "dummy-mount", 
+            "resolver" : "test-peer.catserv",
+            "locator" : "gps",
+            "park_on_stop" : true,
+            "park" : [
+                "0:0:0 0:0:0",
+                "12:52:34.5 5:23:14.3"
+            ],
+            "subscriptions" : {
+                "slewstart" : ["test-peer.cli out"],
+                "slewend" : ["test-peer.cli out"]
+            }
+        },
+		"camera" : {
+            "instanceof" : "dummy-camera"
+        },
+		"dome" : {
+            "instanceof" : "dummy-dome"
+        },
+        "gps" : {
+            "instanceof" : "dummy-gps",
+            "location" : {
+                "lat" : "50:44:14.9",
+                "lon" : "3:32:8.0",
+                "alt" : 50
+            }
+        },
+        "catserv" : {
+            "instanceof" : "tesys-catalogue-server", 
+            "catalogues" : [
+                {
+                    "name" : "IAU Named Stars", 
+                    "file" : "./cmake-build-debug/lib/tesys-catalogue-server/cats/IAU-CSN.tsv",
+                    "name_field" : "Name",
+                    "ra_field" : "RA(J2000)",
+                    "dec_field" : "Dec(J2000)"
+                },
+                {
+                    "name" : "HYG Catalogue HIP Numbers", 
+                    "file" : "./ext/hyg-database/hygdata_v3.csv",
+                    "name_field" : "hip",
+                    "name_prefix" : "hip",
+                    "ra_field" : "ra",
+                    "dec_field" : "dec"
+                },
+                {
+                    "name" : "HYG Catalogue HD Numbers", 
+                    "file" : "./ext/hyg-database/hygdata_v3.csv",
+                    "format" : "csv",
+                    "name_field" : "hd",
+                    "name_prefix" : "hd",
+                    "ra_field" : "ra",
+                    "dec_field" : "dec"
+                }
+            ]
+        }
+    }
+}
