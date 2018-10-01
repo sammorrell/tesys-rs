@@ -1,7 +1,9 @@
 // Constants
-const DEG_PER_RAD: f32 = 57.295779513;
+const DEG_PER_RAD: f32 = {180.0 / std::f32::consts::PI};
+const HOUR_PER_DEG: f32 = {1.0 / 15.0};
+const HOUR_PER_RAD: f32 = {HOUR_PER_DEG * DEG_PER_RAD};
 
-const DEFAULT_WRAP_MAX_ANGLE: f32 = 360.0;
+const DEFAULT_WRAP_MAX_ANGLE: f32 = 2.0 * std::f32::consts::PI;
 const DEFAULT_WRAP_MIN_ANGLE: f32 = 0.0;
 
 mod angle;
@@ -11,9 +13,8 @@ mod hms;
 pub use hms::HMS;
 
 pub fn wrap_angle(val: f32) -> f32 {
-	// This is used to wrap the angle between the limits specified within the code. 
-	
-	let mut rads = val;
-	rads %= 2.0 * std::f32::consts::PI;
+	// This is used to wrap the angle between the limits specified within the code.
+	let mut rads = if val < DEFAULT_WRAP_MIN_ANGLE { DEFAULT_WRAP_MIN_ANGLE - (val % DEFAULT_WRAP_MIN_ANGLE)  } else { val };
+	rads %= DEFAULT_WRAP_MAX_ANGLE;
 	rads
 }
