@@ -4,11 +4,11 @@ extern crate lazy_static;
 extern crate tesys_derive;
 
 mod tesys;
-use tesys::astrometry::Angle;
+use tesys::astrometry::{Angle, HMS};
 use tesys::Peer;
 use std::env;
 
-fn main() -> Result<(), std::io::Error> {
+fn main() -> Result<(), ()> {
 
 	// Let's first check and see if we have a config file as a command line argument
 	if env::args().count() >= 2 {
@@ -22,9 +22,10 @@ fn main() -> Result<(), std::io::Error> {
 	}
 
     tesys::loggable::log("Starting Tesys...");
-    let mut _an: Angle = Angle::new(12.0);
-    let _hms = _an.to_hms();
-    println!("{}", _hms);
+    let mut _an: Angle = Angle::new(57.4874099038135);
+    tesys::loggable::log(&format!("{}", _an));
+    let _hms: HMS = _an.into();
+    tesys::loggable::log(&format!("{}", _hms));
     let _an2: Angle = Angle::new_from_hms(_hms);
 
     tesys::loggable::log("Initialising Peer...");
