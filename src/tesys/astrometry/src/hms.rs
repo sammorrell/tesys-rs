@@ -68,6 +68,6 @@ impl fmt::Display for HMS {
 
 impl Into<f32> for HMS {
 	fn into(self) -> f32 {
- 		(self.h as f32 + (self.m as f32) / 60.0 + (self.s as f32) / 3600.0) / DEG_PER_RAD
+ 		(self.h as f32 + (self.m as f32) / 60.0 + (self.s as f32) / 3600.0) / HOUR_PER_RAD
 	}
 }
