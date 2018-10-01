@@ -1,6 +1,4 @@
-use DEG_PER_RAD;
 use HOUR_PER_RAD;
-use wrap_angle;
 use std::fmt;
 
 pub struct HMS {
@@ -26,11 +24,11 @@ impl HMS {
 		}
 	}
 
-	pub fn new_from_rad(_rad: f32) -> HMS {
+	pub fn new_from_rad(&rad: &f32) -> HMS {
 		//! Generates a new HMS struct from an angle given in radians.
 
-		let _neg = if _rad < 0. { true } else  { false };
-		let dummy = _rad * HOUR_PER_RAD * { if _neg { -1.0 } else { 1.0 } };
+		let _neg = if rad < 0. { true } else  { false };
+		let dummy = rad * HOUR_PER_RAD * { if _neg { -1.0 } else { 1.0 } };
 		let _h: i8 = dummy.floor() as i8;
 		let _m: i8 = (dummy.fract() * 60.0).floor() as i8;
 		let _s: f32 = (dummy.fract() * 60.0).fract() * 60.;

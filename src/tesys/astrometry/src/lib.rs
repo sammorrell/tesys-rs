@@ -12,6 +12,12 @@ pub use angle::Angle;
 mod hms;
 pub use hms::HMS;
 
+mod dms;
+pub use dms::DMS;
+
+mod skycoordinate;
+pub use skycoordinate::SkyCoordinate;
+
 pub fn wrap_angle(val: f32) -> f32 {
 	// This is used to wrap the angle between the limits specified within the code.
 	let mut rads = if val < DEFAULT_WRAP_MIN_ANGLE { DEFAULT_WRAP_MIN_ANGLE - (val % DEFAULT_WRAP_MIN_ANGLE)  } else { val };

@@ -1,5 +1,7 @@
 use hms;
+use dms;
 use std::fmt;
+use std::clone::Clone;
 
 use DEG_PER_RAD;
 
@@ -27,9 +29,14 @@ impl Angle {
 		self._angle = val;
 	}
 
-	pub fn to_hms(self) -> hms::HMS {
-		let hms = hms::HMS::new_from_rad(self._angle);
+	pub fn to_hms(&self) -> hms::HMS {
+		let hms = hms::HMS::new_from_rad(&self._angle);
 		return hms;
+	}
+
+	pub fn to_dms(&self) -> dms::DMS {
+		let dms = dms::DMS::new_from_rad(&self._angle);
+		return dms;
 	}
 }
 
@@ -51,6 +58,12 @@ impl Into<hms::HMS> for Angle {
 	}
 }
 
+impl Into<dms::DMS> for Angle {
+	fn into(self) -> dms::DMS {
+		return self.to_dms();
+	}
+}
+
 impl Into<f32> for Angle {
 	fn into(self) -> f32 {
  		self._angle
@@ -60,5 +73,13 @@ impl Into<f32> for Angle {
 impl Into<i8> for Angle {
 	fn into(self) -> i8 {
 		self._angle as i8
+	}
+}
+
+impl Clone for Angle {
+	fn clone(&self) -> Angle {
+		Angle {
+			_angle : self._angle
+		}
 	}
 }
