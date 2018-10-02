@@ -17,17 +17,26 @@ pub trait Loggable {
 #[allow(dead_code)]
 pub fn log(str: &str) {
     let _mtx = LOGGABLE_MTX.lock().unwrap();
-    println!("{}", format!("[ {} ] {}", "Info".magenta().bold(), str.green()));
+    println!(
+        "{}",
+        format!("[ {} ] {}", "Info".magenta().bold(), str.green())
+    );
 }
 
 #[allow(dead_code)]
 pub fn warn(str: &str) {
     let _mtx = LOGGABLE_MTX.lock().unwrap();
-    println!("{}", format!("[ {} ] {}", "Warning".magenta().bold(), str.yellow()));
+    println!(
+        "{}",
+        format!("[ {} ] {}", "Warning".magenta().bold(), str.yellow())
+    );
 }
 
 #[allow(dead_code)]
 pub fn err(str: &str) {
     let _mtx = LOGGABLE_MTX.lock().unwrap();
-    println!("{}", format!("[ {} ] {}", "Error".magenta().bold(), str.red()));
+    println!(
+        "{}",
+        format!("[ {} ] {}", "Error".magenta().bold(), str.red())
+    );
 }

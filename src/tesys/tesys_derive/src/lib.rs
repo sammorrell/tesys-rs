@@ -1,4 +1,4 @@
-#![recursion_limit="128"] // Maybe due to Nightly rust, but this needs to be added for recursion limit of stringify!
+#![recursion_limit = "128"] // Maybe due to Nightly rust, but this needs to be added for recursion limit of stringify!
 extern crate proc_macro;
 extern crate syn;
 #[macro_use]
