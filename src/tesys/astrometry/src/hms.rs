@@ -25,7 +25,11 @@ impl HMS {
 	}
 
 	pub fn new_from_rad(&rad: &f32) -> HMS {
-		//! Generates a new HMS struct from an angle given in radians.
+		/*!
+		 * Creates a new instance of HMS object from a radian measurement, given as an f32.
+		 * As the Angle struct uses an f32 representation of radians internally, this is what
+		 * gets called when you call the ```Angle::to_hms()``` function. 
+		 */
 
 		let _neg = if rad < 0. { true } else  { false };
 		let dummy = rad * HOUR_PER_RAD * { if _neg { -1.0 } else { 1.0 } };
