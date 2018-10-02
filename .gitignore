@@ -11,3 +11,7 @@ Cargo.lock
 
 /target
 **/*.rs.bk
+
+
+# Some IDE specific ignores
+.vscode/
