@@ -4,7 +4,7 @@ extern crate lazy_static;
 extern crate tesys_derive;
 
 mod tesys;
-use tesys::astrometry::{Angle, HMS};
+use tesys::astrometry::SkyCoordinate;
 use tesys::Peer;
 use std::env;
 
@@ -22,11 +22,11 @@ fn main() -> Result<(), ()> {
 	}
 
     tesys::loggable::log("Starting Tesys...");
-    let mut _an: Angle = Angle::new(57.4874099038135);
-    tesys::loggable::log(&format!("{}", _an));
-    let _hms: HMS = _an.into();
-    tesys::loggable::log(&format!("{}", _hms));
-    let _an2: Angle = Angle::new_from_hms(_hms);
+
+	let coord = SkyCoordinate::new(57.4874099038135, 57.4874099038135);
+	tesys::loggable::log(&format!("{}", coord));
+	let ang = coord.ra.clone();
+	tesys::loggable::log(&format!("{}", ang));
 
     tesys::loggable::log("Initialising Peer...");
     let _p = Peer::new();
