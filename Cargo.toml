@@ -1,7 +1,7 @@
 [workspace]
 members = [
-	"src/tesys/astrometry",
-	"src/tesys/tesys_derive"
+	"tesys/",
+	"plugins/example",
 ]
 
 [package]
@@ -10,8 +10,9 @@ version = "0.1.0"
 authors = ["Sam Morrell <samuelmorrell@gmail.com>"]
 
 [dependencies]
-tesys_astrometry = { path = "src/tesys/astrometry"}
-tesys_derive = { path = "src/tesys/tesys_derive"}
+tesys = { path = "tesys/"}
+tesys_astrometry = { path = "tesys/src/astrometry"}
+tesys_derive = { path = "tesys/src/tesys_derive"}
 lazy_static = "1.1.0"
 colored = "1.6.1"
 libloading = "0.5.0"
