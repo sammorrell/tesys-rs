@@ -1,0 +1,12 @@
+[package]
+name = "tesys_example_plugin"
+version = "0.0.1"
+authors = ["Sam Morrell <samuelmorrell@gmail.com>"]
+
+[lib]
+name = "tesys_example_plugin"
+path = "src/lib.rs"
+crate-type = ["lib", "dylib"]
+
+[dependencies]
+tesys = { path = "../../tesys/"}
