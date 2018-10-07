@@ -1,14 +1,8 @@
-#[macro_use]
-extern crate lazy_static;
-#[macro_use]
-extern crate tesys_derive;
 extern crate tesys;
 
 use std::env;
-use tesys::loggable::*;
 use tesys::astrometry::SkyCoordinate;
 use tesys::Peer;
-use tesys::Plugin;
 
 fn main() -> Result<(), ()> {
     // Let's first check and see if we have a config file as a command line argument
@@ -29,11 +23,8 @@ fn main() -> Result<(), ()> {
     let ang = coord.ra.clone();
     tesys::loggable::log(&format!("{}", ang));
 
-    // Let's try to load a plugin
-    //let pg = tesys::plugin::instance_from_path("./target/debug/libtesys_example_plugin.so".to_string()).unwrap();
-    //pg.test();
-
     tesys::loggable::log("Initialising Peer...");
-    let _p = Peer::new();
+    let mut _p = Peer::new();
+    _p.load_plugins();
     Ok(())
 }

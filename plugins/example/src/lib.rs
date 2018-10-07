@@ -5,8 +5,10 @@ use tesys::Plugin;
 use tesys::loggable::*;
 
 #[no_mangle]
-pub fn create() -> Box<ExamplePlugin> {
-	Box::new(ExamplePlugin::new())
+pub extern "C" fn _create_plugin() -> *mut Plugin {
+	let obj = ExamplePlugin::new();
+	let boxed: Box<ExamplePlugin> = Box::new(obj);
+	Box::into_raw(boxed)
 }
 
 #[allow(dead_code)]
@@ -28,6 +30,6 @@ impl Plugin for ExamplePlugin {
 	}
 
 	fn test(&self) {
-		println!("Test");
+		Self::warn("Test");
 	}
 }
