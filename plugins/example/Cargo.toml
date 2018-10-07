@@ -10,3 +10,4 @@ crate-type = ["lib", "dylib"]
 
 [dependencies]
 tesys = { path = "../../tesys/"}
+tesys_derive = { path = "../../tesys/src/tesys_derive"}

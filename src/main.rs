@@ -5,6 +5,7 @@ extern crate tesys_derive;
 extern crate tesys;
 
 use std::env;
+use tesys::loggable::*;
 use tesys::astrometry::SkyCoordinate;
 use tesys::Peer;
 use tesys::Plugin;
@@ -28,8 +29,9 @@ fn main() -> Result<(), ()> {
     let ang = coord.ra.clone();
     tesys::loggable::log(&format!("{}", ang));
 
-    /// Let's try to load a plugin
-    let pg = Plugin::instance_from_path("./target/debug/libtesys_example_plugin.so".to_string());
+    // Let's try to load a plugin
+    //let pg = tesys::plugin::instance_from_path("./target/debug/libtesys_example_plugin.so".to_string()).unwrap();
+    //pg.test();
 
     tesys::loggable::log("Initialising Peer...");
     let _p = Peer::new();
