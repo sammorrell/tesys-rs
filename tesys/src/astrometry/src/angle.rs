@@ -73,6 +73,24 @@ impl Into<i8> for Angle {
     }
 }
 
+impl From<i8> for Angle {
+    fn from( val: i8) -> Self {
+        Angle::new(val as f32)
+    }
+}
+
+impl From<i32> for Angle {
+    fn from( val: i32) -> Self {
+        Angle::new(val as f32)
+    }
+}
+
+impl From<f32> for Angle {
+    fn from( val: f32) -> Self {
+        Angle::new(val)
+    }
+}
+
 impl Clone for Angle {
     fn clone(&self) -> Angle {
         Angle {
