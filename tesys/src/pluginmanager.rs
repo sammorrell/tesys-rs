@@ -38,7 +38,7 @@ impl PluginManager {
 					Ok(sym) => {
 						let func = sym as Symbol<PluginCreate>;
 						let pg_raw = func();
-						let pg = Box::from_raw(pg_raw);
+						let mut pg = Box::from_raw(pg_raw);
 						Ok(pg)
 					},
 					Err(e) => Err("Unable to load _create symbol"),
