@@ -6,7 +6,6 @@ authors = ["Sam Morrell <samuelmorrell@gmail.com>"]
 [lib]
 name = "tesys"
 path = "./src/lib.rs"
-version = "0.1.0"
 
 [dependencies]
 tesys_astrometry = { path = "src/astrometry"}
