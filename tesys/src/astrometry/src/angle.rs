@@ -3,6 +3,9 @@ use hms;
 use std::clone::Clone;
 use std::fmt;
 
+use std::ops::AddAssign;
+use std::ops::Add;
+
 use DEG_PER_RAD;
 
 pub struct Angle {
@@ -88,6 +91,55 @@ impl From<i32> for Angle {
 impl From<f32> for Angle {
     fn from( val: f32) -> Self {
         Angle::new(val)
+    }
+}
+
+/* Operations */
+impl AddAssign<Angle> for Angle {
+    fn add_assign(&mut self, rhs: Angle) {
+        self._angle = self._angle + rhs._angle;
+    }
+}
+
+impl AddAssign<f32> for Angle {
+    fn add_assign(&mut self, rhs: f32) {
+        self._angle = self._angle + rhs;
+    }
+}
+
+impl AddAssign<i32> for Angle {
+    fn add_assign(&mut self, rhs: i32) {
+        self._angle = self._angle + (rhs as f32);
+    }
+}
+
+impl Add<Angle> for Angle {
+    type Output = Angle;
+
+    fn add(self, rhs: Angle) -> Angle {
+        Angle {
+            _angle: self._angle + rhs._angle
+        }
+    }
+}
+
+impl Add<f32> for Angle {
+    type Output = Angle;
+
+    fn add(self, rhs: f32) -> Angle {
+        Angle {
+            _angle: self._angle + rhs
+        }
+    }
+}
+
+impl Add<i32> for Angle {
+    type Output = Angle;
+
+    fn add(self, rhs: i32) -> Angle {
+        Angle {
+            _angle: self._angle + (rhs as f32)
+        }  
     }
 }
 
