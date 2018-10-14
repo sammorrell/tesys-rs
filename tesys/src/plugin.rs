@@ -1,4 +1,3 @@
-use loggable::*;
 use std::any::Any;
 
 pub trait Plugin: Any + Send + Sync {

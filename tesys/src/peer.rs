@@ -18,7 +18,7 @@ impl Peer {
             let pg = self.plugin_manager.load("target/debug/libtesys_example_plugin.dylib".to_string());
 
             match pg {
-                Ok(mut p) => p.test(),
+                Ok(p) => p.test(),
                 Err(e) => Self::err(&format!("Unable to load plugin: {}. ", e)),
             }
         }
