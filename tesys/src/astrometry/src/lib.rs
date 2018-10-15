@@ -15,6 +15,9 @@ pub use hms::HMS;
 mod dms;
 pub use dms::DMS;
 
+mod location;
+pub use location::Location;
+
 mod skycoordinate;
 pub use skycoordinate::SkyCoordinate;
 
