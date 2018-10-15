@@ -6,10 +6,10 @@ pub struct Location {
 }
 
 impl Location {
-	pub fn new(lat: f32, lon: f32) -> Location {
+	pub fn new(_lat: f32, _lon: f32) -> Location {
 		Location {
-			lat: Angle::new(lat),
-			lon: Angle::new(lon),
+			lat: Angle::new(_lat),
+			lon: Angle::new(_lon),
 		}
 	}
 }
