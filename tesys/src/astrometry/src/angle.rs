@@ -40,6 +40,18 @@ impl Angle {
         let dms = dms::DMS::new_from_rad(&self._angle);
         return dms;
     }
+
+    pub fn sin(&self) -> f32 {
+        self._angle.sin()
+    }
+
+    pub fn cos(&self) -> f32 {
+        self._angle.cos()
+    }
+
+    pub fn tan(&self) -> f32 {
+        self._angle.tan()
+    }
 }
 
 impl fmt::Debug for Angle {
