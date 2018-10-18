@@ -15,6 +15,9 @@ pub use hms::HMS;
 mod dms;
 pub use dms::DMS;
 
+mod azel;
+pub use azel::AzEl;
+
 mod location;
 pub use location::Location;
 
