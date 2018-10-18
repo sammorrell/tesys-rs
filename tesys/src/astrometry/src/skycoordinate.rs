@@ -1,3 +1,4 @@
+use chrono::{DateTime, Local};
 use Angle;
 use Location;
 use AzEl;
@@ -16,7 +17,12 @@ impl SkyCoordinate {
         SkyCoordinate { ra: ra, dec: dec }
     }
 
-    pub fn to_sky_position(&self, _loc: Location) -> AzEl {
+    pub fn to_current_sky_position(&self, _loc: Location) -> AzEl {
+        let dt = Local::now();
+        self.to_sky_position(_loc, dt)
+    }
+
+    pub fn to_sky_position(&self, _loc: Location, _dt: DateTime<Local>) -> AzEl {
         AzEl {
             az: Angle::new(0.),
             el: Angle::new(0.),

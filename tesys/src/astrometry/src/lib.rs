@@ -1,3 +1,5 @@
+extern crate chrono;
+
 // Constants
 const DEG_PER_RAD: f32 = { 180.0 / std::f32::consts::PI };
 const HOUR_PER_DEG: f32 = { 1.0 / 15.0 };
@@ -5,6 +7,8 @@ const HOUR_PER_RAD: f32 = { HOUR_PER_DEG * DEG_PER_RAD };
 
 const DEFAULT_WRAP_MAX_ANGLE: f32 = 2.0 * std::f32::consts::PI;
 const DEFAULT_WRAP_MIN_ANGLE: f32 = 0.0;
+
+mod datetime;
 
 mod angle;
 pub use angle::Angle;
