@@ -1,4 +1,6 @@
 use Angle;
+use Location;
+use AzEl;
 
 use std::fmt;
 
@@ -12,6 +14,13 @@ impl SkyCoordinate {
         let ra = Angle::new(_ra);
         let dec = Angle::new(_dec);
         SkyCoordinate { ra: ra, dec: dec }
+    }
+
+    pub fn to_sky_position(&self, _loc: Location) -> AzEl {
+        AzEl {
+            az: Angle::new(0.),
+            el: Angle::new(0.),
+        }
     }
 }
 
