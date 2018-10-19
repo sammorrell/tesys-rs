@@ -4,8 +4,8 @@ use std::clone::Clone;
 use std::fmt;
 
 use std::ops::Add;
-use std::ops::Sub;
 use std::ops::AddAssign;
+use std::ops::Sub;
 use std::ops::SubAssign;
 
 use DEG_PER_RAD;
@@ -91,19 +91,19 @@ impl Into<i8> for Angle {
 }
 
 impl From<i8> for Angle {
-    fn from( val: i8) -> Self {
+    fn from(val: i8) -> Self {
         Angle::new(val as f32)
     }
 }
 
 impl From<i32> for Angle {
-    fn from( val: i32) -> Self {
+    fn from(val: i32) -> Self {
         Angle::new(val as f32)
     }
 }
 
 impl From<f32> for Angle {
-    fn from( val: f32) -> Self {
+    fn from(val: f32) -> Self {
         Angle::new(val)
     }
 }
@@ -150,7 +150,7 @@ impl Add<Angle> for Angle {
 
     fn add(self, rhs: Angle) -> Angle {
         Angle {
-            _angle: self._angle + rhs._angle
+            _angle: self._angle + rhs._angle,
         }
     }
 }
@@ -170,15 +170,15 @@ impl Add<i32> for Angle {
 
     fn add(self, rhs: i32) -> Angle {
         Angle {
-            _angle: self._angle + (rhs as f32)
-        }  
+            _angle: self._angle + (rhs as f32),
+        }
     }
 }
 
 impl Sub<Angle> for Angle {
     type Output = Angle;
 
-    fn sub(self, rhs:Angle) -> Angle {
+    fn sub(self, rhs: Angle) -> Angle {
         Angle {
             _angle: self._angle - rhs._angle,
         }
@@ -188,7 +188,7 @@ impl Sub<Angle> for Angle {
 impl Sub<f32> for Angle {
     type Output = Angle;
 
-    fn sub(self, rhs:f32) -> Angle {
+    fn sub(self, rhs: f32) -> Angle {
         Angle {
             _angle: self._angle - rhs,
         }
@@ -198,7 +198,7 @@ impl Sub<f32> for Angle {
 impl Sub<i32> for Angle {
     type Output = Angle;
 
-    fn sub(self, rhs:i32) -> Angle {
+    fn sub(self, rhs: i32) -> Angle {
         Angle {
             _angle: self._angle - (rhs as f32),
         }

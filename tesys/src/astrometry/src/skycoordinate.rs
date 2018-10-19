@@ -1,7 +1,7 @@
 use chrono::{DateTime, Local};
 use Angle;
-use Location;
 use AzEl;
+use Location;
 
 use std::fmt;
 
