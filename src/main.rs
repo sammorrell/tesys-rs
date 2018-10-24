@@ -1,8 +1,11 @@
 extern crate tesys;
+extern crate chrono;
 
 use std::env;
-use tesys::astrometry::SkyCoordinate;
+use tesys::astrometry::{SkyCoordinate, Location};
 use tesys::Peer;
+use chrono::Local;
+use tesys::astrometry::datetime::*;
 
 fn main() -> Result<(), ()> {
     // Let's first check and see if we have a config file as a command line argument
@@ -22,6 +25,11 @@ fn main() -> Result<(), ()> {
     tesys::loggable::log(&format!("{}", coord));
     let ang = coord.ra.clone();
     tesys::loggable::log(&format!("{}", ang));
+
+    let dt = Local::now();
+    let loc = Location::new(50.73778, -3.535278);
+    println!("{}", datetime_to_modified_julian_date(dt));
+    println!("{}", get_sidereal_time(dt, loc).to_hms());
 
     tesys::loggable::log("Initialising Peer...");
     let mut _p = Peer::new();
