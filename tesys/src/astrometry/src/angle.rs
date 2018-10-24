@@ -6,6 +6,7 @@ use std::fmt;
 use std::ops::Add;
 use std::ops::AddAssign;
 use std::ops::Sub;
+use std::ops::Rem;
 use std::ops::SubAssign;
 use std::cmp::Ordering;
 
@@ -40,6 +41,10 @@ impl Angle {
     pub fn to_dms(&self) -> dms::DMS {
         let dms = dms::DMS::new_from_rad(&self._angle);
         return dms;
+    }
+
+    pub fn to_degrees(&self) -> f64 {
+        self._angle * DEG_PER_RAD
     }
 
     pub fn sin(&self) -> f64 {
@@ -206,6 +211,30 @@ impl Sub<i32> for Angle {
     }
 }
 
+impl Rem<Angle> for Angle {
+    type Output = Angle;
+
+    fn rem(self, rhs: Angle) -> Self {
+        Angle::new(self._angle % rhs._angle)
+    }
+}
+
+impl Rem<f64> for Angle {
+    type Output = Angle;
+
+    fn rem(self, rhs: f64) -> Self {
+        Angle::new(self._angle % rhs)
+    }
+}
+
+impl Rem<i32> for Angle {
+    type Output = Angle;
+
+    fn rem(self, rhs: i32) -> Self {
+        Angle::new(self._angle % rhs as f64)
+    }
+}
+
 impl Clone for Angle {
     fn clone(&self) -> Angle {
         Angle {
@@ -214,22 +243,22 @@ impl Clone for Angle {
     }
 }
 
-impl Eq for Angle {}
+impl Eq for Angle {  }
+
+impl PartialEq for Angle {
+    fn eq(&self, other: &Angle) -> bool {
+        self._angle == other._angle
+    }
+}
 
 impl Ord for Angle {
     fn cmp(&self, other: &Angle) -> Ordering {
-        self._angle.cmp(&other._angle)
+        self._angle.partial_cmp(&other._angle).unwrap()
     }
 }
 
 impl PartialOrd for Angle {
     fn partial_cmp(&self, other: &Angle) -> Option<Ordering> {
-        Some(self.partial_cmp(other))
-    }
-}
-
-impl PartialEq for Angle {
-    fn eq(&self, other: &Angle) -> bool {
-        self._angle == other._angle
+        Some(self.cmp(other))
     }
 }

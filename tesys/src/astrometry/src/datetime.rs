@@ -28,8 +28,8 @@ pub fn datetime_to_gmst(_dt: DateTime<Local>) -> Angle {
 }
 
 pub fn get_sidereal_time(_dt: DateTime<Local>, _loc: Location) -> Angle {
-	let lon: f64 = if _loc.lon <  0. { -360. - _loc.lon % 360. } else  { _loc.lon };
-	let lmst: f64 = (datetime_to_gmst(_dt) - lon) % 360.;
+	let lon = if _loc.lon <  Angle::new(0.) { -360.0 - (_loc.lon % 360.0 as f64).to_degrees() } else  { _loc.lon.to_degrees() };
+	let lmst: f64 = ((datetime_to_gmst(_dt) - lon) % 360.).into();
 
 	Angle::new(lmst)
 }
