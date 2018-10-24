@@ -4,7 +4,7 @@ use DEG_PER_RAD;
 pub struct DMS {
     pub d: i8,
     pub m: i8,
-    pub s: f32,
+    pub s: f64,
     pub neg: bool,
 }
 
@@ -12,10 +12,10 @@ impl DMS {
     /*!
      * A container that can be used to express angles as hours, minutes and seconds.
      * The hours and minutes are represented as i8, whereas seconds has a fractional part
-     * thus is represented by an f32.
+     * thus is represented by an f64.
      */
 
-    pub fn new(_d: i8, _m: i8, _s: f32, _neg: bool) -> DMS {
+    pub fn new(_d: i8, _m: i8, _s: f64, _neg: bool) -> DMS {
         DMS {
             d: _d,
             m: _m,
@@ -24,10 +24,10 @@ impl DMS {
         }
     }
 
-    pub fn new_from_rad(&rad: &f32) -> DMS {
+    pub fn new_from_rad(&rad: &f64) -> DMS {
         /*!
-         * Creates a new instance of DMS object from a radian measurement, given as an f32.
-         * As the Angle struct uses an f32 representation of radians internally, this is what
+         * Creates a new instance of DMS object from a radian measurement, given as an f64.
+         * As the Angle struct uses an f64 representation of radians internally, this is what
          * gets called when you call the ```Angle::to_dms()``` function.
          */
 
@@ -41,7 +41,7 @@ impl DMS {
         };
         let _h: i8 = dummy.floor() as i8;
         let _m: i8 = (dummy.fract() * 60.0).floor() as i8;
-        let _s: f32 = (dummy.fract() * 60.0).fract() * 60.;
+        let _s: f64 = (dummy.fract() * 60.0).fract() * 60.;
 
         DMS {
             d: _h,
@@ -61,7 +61,7 @@ impl DMS {
 
         let _h: i8 = 0;
         let _m: i8 = 0;
-        let _s: f32 = 0.0;
+        let _s: f64 = 0.0;
         let _sign: bool = false;
         DMS::new(_h, _m, _s, _sign)
     }
@@ -74,8 +74,8 @@ impl fmt::Display for DMS {
     }
 }
 
-impl Into<f32> for DMS {
-    fn into(self) -> f32 {
-        (self.d as f32 + (self.m as f32) / 60.0 + (self.s as f32) / 3600.0) / DEG_PER_RAD
+impl Into<f64> for DMS {
+    fn into(self) -> f64 {
+        (self.d as f64 + (self.m as f64) / 60.0 + (self.s as f64) / 3600.0) / DEG_PER_RAD
     }
 }

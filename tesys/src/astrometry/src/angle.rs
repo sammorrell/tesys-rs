@@ -7,15 +7,16 @@ use std::ops::Add;
 use std::ops::AddAssign;
 use std::ops::Sub;
 use std::ops::SubAssign;
+use std::cmp::Ordering;
 
 use DEG_PER_RAD;
 
 pub struct Angle {
-    _angle: f32, // Measured in radians
+    _angle: f64, // Measured in radians
 }
 
 impl Angle {
-    pub fn new(val: f32) -> Angle {
+    pub fn new(val: f64) -> Angle {
         // Creates a new instance of the object given an angle in degrees.
         Angle {
             _angle: val / DEG_PER_RAD,
@@ -27,7 +28,7 @@ impl Angle {
         Angle { _angle: val.into() }
     }
 
-    pub fn set(&mut self, val: f32) {
+    pub fn set(&mut self, val: f64) {
         self._angle = val;
     }
 
@@ -41,15 +42,15 @@ impl Angle {
         return dms;
     }
 
-    pub fn sin(&self) -> f32 {
+    pub fn sin(&self) -> f64 {
         self._angle.sin()
     }
 
-    pub fn cos(&self) -> f32 {
+    pub fn cos(&self) -> f64 {
         self._angle.cos()
     }
 
-    pub fn tan(&self) -> f32 {
+    pub fn tan(&self) -> f64 {
         self._angle.tan()
     }
 }
@@ -78,8 +79,8 @@ impl Into<dms::DMS> for Angle {
     }
 }
 
-impl Into<f32> for Angle {
-    fn into(self) -> f32 {
+impl Into<f64> for Angle {
+    fn into(self) -> f64 {
         self._angle
     }
 }
@@ -92,18 +93,18 @@ impl Into<i8> for Angle {
 
 impl From<i8> for Angle {
     fn from(val: i8) -> Self {
-        Angle::new(val as f32)
+        Angle::new(val as f64)
     }
 }
 
 impl From<i32> for Angle {
     fn from(val: i32) -> Self {
-        Angle::new(val as f32)
+        Angle::new(val as f64)
     }
 }
 
-impl From<f32> for Angle {
-    fn from(val: f32) -> Self {
+impl From<f64> for Angle {
+    fn from(val: f64) -> Self {
         Angle::new(val)
     }
 }
@@ -115,15 +116,15 @@ impl AddAssign<Angle> for Angle {
     }
 }
 
-impl AddAssign<f32> for Angle {
-    fn add_assign(&mut self, rhs: f32) {
+impl AddAssign<f64> for Angle {
+    fn add_assign(&mut self, rhs: f64) {
         self._angle = self._angle + rhs;
     }
 }
 
 impl AddAssign<i32> for Angle {
     fn add_assign(&mut self, rhs: i32) {
-        self._angle = self._angle + (rhs as f32);
+        self._angle = self._angle + (rhs as f64);
     }
 }
 
@@ -133,15 +134,15 @@ impl SubAssign<Angle> for Angle {
     }
 }
 
-impl SubAssign<f32> for Angle {
-    fn sub_assign(&mut self, rhs: f32) {
+impl SubAssign<f64> for Angle {
+    fn sub_assign(&mut self, rhs: f64) {
         self._angle = self._angle - rhs;
     }
 }
 
 impl SubAssign<i32> for Angle {
     fn sub_assign(&mut self, rhs: i32) {
-        self._angle = self._angle - (rhs as f32);
+        self._angle = self._angle - (rhs as f64);
     }
 }
 
@@ -155,10 +156,10 @@ impl Add<Angle> for Angle {
     }
 }
 
-impl Add<f32> for Angle {
+impl Add<f64> for Angle {
     type Output = Angle;
 
-    fn add(self, rhs: f32) -> Angle {
+    fn add(self, rhs: f64) -> Angle {
         Angle {
             _angle: self._angle + rhs,
         }
@@ -170,7 +171,7 @@ impl Add<i32> for Angle {
 
     fn add(self, rhs: i32) -> Angle {
         Angle {
-            _angle: self._angle + (rhs as f32),
+            _angle: self._angle + (rhs as f64),
         }
     }
 }
@@ -185,10 +186,10 @@ impl Sub<Angle> for Angle {
     }
 }
 
-impl Sub<f32> for Angle {
+impl Sub<f64> for Angle {
     type Output = Angle;
 
-    fn sub(self, rhs: f32) -> Angle {
+    fn sub(self, rhs: f64) -> Angle {
         Angle {
             _angle: self._angle - rhs,
         }
@@ -200,7 +201,7 @@ impl Sub<i32> for Angle {
 
     fn sub(self, rhs: i32) -> Angle {
         Angle {
-            _angle: self._angle - (rhs as f32),
+            _angle: self._angle - (rhs as f64),
         }
     }
 }
@@ -210,5 +211,25 @@ impl Clone for Angle {
         Angle {
             _angle: self._angle,
         }
+    }
+}
+
+impl Eq for Angle {}
+
+impl Ord for Angle {
+    fn cmp(&self, other: &Angle) -> Ordering {
+        self._angle.cmp(&other._angle)
+    }
+}
+
+impl PartialOrd for Angle {
+    fn partial_cmp(&self, other: &Angle) -> Option<Ordering> {
+        Some(self.partial_cmp(other))
+    }
+}
+
+impl PartialEq for Angle {
+    fn eq(&self, other: &Angle) -> bool {
+        self._angle == other._angle
     }
 }

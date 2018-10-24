@@ -1,5 +1,6 @@
 use chrono::{DateTime, Local};
-
+use Angle;
+use Location;
 
 const SECONDS_PER_SIDEREAL_DAY: f64 = 24.0 * 3600.0; // The number of seconds in 24 hours, given in f64. 
 const SECONDS_PER_SIDEREAL_YEAR: f64 = SECONDS_PER_SIDEREAL_DAY * 365.25636; // The number of seconds in a sidereal year, given in f64. 
@@ -16,3 +17,19 @@ pub fn datetime_to_modified_julian_date(_dt: DateTime<Local>) -> f64 {
     datetime_to_julian_date(_dt) - MJD_OFFSET
 }
 
+pub fn datetime_to_gmst(_dt: DateTime<Local>) -> Angle {
+	let jd = datetime_to_julian_date(_dt);
+	let t = (jd - 2451545.0) / (36525.0);
+	let mut st = 280.46061837 + 360.98564736629 * ( jd - 2451545.0 );
+	st += 0.000387933 * t.powi(2) - t.powi(3) / 38710000.0;
+	st = st % 360.;
+
+	Angle::new(st)
+}
+
+pub fn get_sidereal_time(_dt: DateTime<Local>, _loc: Location) -> Angle {
+	let lon: f64 = if _loc.lon <  0. { -360. - _loc.lon % 360. } else  { _loc.lon };
+	let lmst: f64 = (datetime_to_gmst(_dt) - lon) % 360.;
+
+	Angle::new(lmst)
+}

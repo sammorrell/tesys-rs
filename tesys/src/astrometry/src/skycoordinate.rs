@@ -11,7 +11,7 @@ pub struct SkyCoordinate {
 }
 
 impl SkyCoordinate {
-    pub fn new(_ra: f32, _dec: f32) -> SkyCoordinate {
+    pub fn new(_ra: f64, _dec: f64) -> SkyCoordinate {
         let ra = Angle::new(_ra);
         let dec = Angle::new(_dec);
         SkyCoordinate { ra: ra, dec: dec }

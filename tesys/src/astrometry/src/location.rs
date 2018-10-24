@@ -1,12 +1,12 @@
 use Angle;
 
 pub struct Location {
-    lat: Angle,
-    lon: Angle,
+    pub lat: Angle,
+    pub lon: Angle,
 }
 
 impl Location {
-    pub fn new(_lat: f32, _lon: f32) -> Location {
+    pub fn new(_lat: f64, _lon: f64) -> Location {
         Location {
             lat: Angle::new(_lat),
             lon: Angle::new(_lon),

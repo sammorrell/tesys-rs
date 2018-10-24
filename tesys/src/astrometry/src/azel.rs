@@ -6,7 +6,7 @@ pub struct AzEl {
 }
 
 impl AzEl {
-    pub fn new(az: f32, el: f32) -> AzEl {
+    pub fn new(az: f64, el: f64) -> AzEl {
         AzEl {
             az: Angle::new(az),
             el: Angle::new(el),
