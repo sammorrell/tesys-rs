@@ -43,7 +43,7 @@ impl Angle {
         return dms;
     }
 
-    pub fn to_degrees(&self) -> f64 {
+    pub fn deg(&self) -> f64 {
         self._angle * DEG_PER_RAD
     }
 
