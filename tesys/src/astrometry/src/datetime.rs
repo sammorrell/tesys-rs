@@ -18,6 +18,7 @@ pub fn datetime_to_modified_julian_date(_dt: DateTime<Local>) -> f64 {
 }
 
 pub fn datetime_to_gmst(_dt: DateTime<Local>) -> Angle {
+	//! Converts a datetime to a Greenwich Mean Sidereal Time. 
 	let jd = datetime_to_julian_date(_dt);
 	let t = (jd - 2451545.0) / (36525.0);
 	let mut st = 280.46061837 + 360.98564736629 * ( jd - 2451545.0 );
@@ -28,6 +29,7 @@ pub fn datetime_to_gmst(_dt: DateTime<Local>) -> Angle {
 }
 
 pub fn get_sidereal_time(_dt: DateTime<Local>, _loc: Location) -> Angle {
+	//! Converts a Location and a chrono::Local into Local Mean Sidereal Time. 
 	let lon: f64 = if _loc.lon.deg() < 0.0 { -360.0 - (_loc.lon.deg() % 360.0 as f64) } else { _loc.lon.deg() };
 	let lmst: f64 = ((datetime_to_gmst(_dt).deg() - lon) % 360.).into();
 
