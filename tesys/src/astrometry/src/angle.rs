@@ -29,6 +29,18 @@ impl Angle {
         Angle { _angle: val.into() }
     }
 
+    pub fn new_from_asin(val: f64) -> Angle {
+        Angle { _angle: val.asin() }
+    }
+
+    pub fn new_from_acos(val: f64) -> Angle {
+        Angle { _angle: val.acos() }
+    }
+
+    pub fn new_from_atan(val: f64) -> Angle {
+        Angle { _angle: val.atan() }
+    }
+
     pub fn set(&mut self, val: f64) {
         self._angle = val;
     }

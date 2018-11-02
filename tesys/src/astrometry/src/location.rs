@@ -1,5 +1,6 @@
 use Angle;
 
+#[derive(Clone)]
 pub struct Location {
     pub lat: Angle,
     pub lon: Angle,

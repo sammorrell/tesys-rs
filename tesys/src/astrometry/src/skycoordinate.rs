@@ -4,6 +4,8 @@ use AzEl;
 use Location;
 
 use std::fmt;
+use std::f64;
+use datetime::*;
 
 pub struct SkyCoordinate {
     pub ra: Angle,
@@ -19,13 +21,22 @@ impl SkyCoordinate {
 
     pub fn to_current_sky_position(&self, _loc: Location) -> AzEl {
         let dt = Local::now();
-        self.to_sky_position(_loc, dt)
+        self.to_sky_position(dt, _loc)
     }
 
-    pub fn to_sky_position(&self, _loc: Location, _dt: DateTime<Local>) -> AzEl {
+    pub fn to_sky_position(&self, _dt: DateTime<Local>, _loc: Location) -> AzEl {
+        let ra = self.ra.clone();
+        let mut ha = get_sidereal_time(_dt, _loc.clone()) - ra;
+        ha = if ha < Angle::new(0.0) { ha + 2.0 * f64::consts::PI } else { ha };
+        ha = if ha > Angle::new(360.0) { ha - 2.0 * f64::consts::PI } else { ha };
+
+        let az = Angle::new_from_atan( ha.sin() / (ha.cos() * _loc.lat.sin() - self.dec.tan() * _loc.lat.cos()) );
+        let el = Angle::new_from_asin( _loc.lat.sin() * self.dec.sin() + _loc.lat.cos() * self.dec.cos() * ha.cos() );
+        //let az = Angle::new(- ( - _loc.lat.sin() * self.dec.cos() * ha.cos()).atan2(self.dec.cos() * ha.sin() ));
+        
         AzEl {
-            az: Angle::new(0.),
-            el: Angle::new(0.),
+            az: az,
+            el: el,
         }
     }
 }
