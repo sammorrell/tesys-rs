@@ -8,6 +8,8 @@ const HOUR_PER_RAD: f64 = { HOUR_PER_DEG * DEG_PER_RAD };
 const DEFAULT_WRAP_MAX_ANGLE: f64 = 2.0 * std::f64::consts::PI;
 const DEFAULT_WRAP_MIN_ANGLE: f64 = 0.0;
 
+pub mod epoch;
+pub use epoch::Epoch;
 pub mod datetime;
 
 mod angle;
