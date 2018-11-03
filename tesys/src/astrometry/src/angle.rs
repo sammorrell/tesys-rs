@@ -13,6 +13,9 @@ use std::ops::SubAssign;
 use std::cmp::Ordering;
 
 use DEG_PER_RAD;
+use MAS_PER_RAD;
+use ARCSEC_PER_DEG;
+use MAS_PER_DEG;
 
 pub struct Angle {
     _angle: f64, // Measured in radians
@@ -24,6 +27,16 @@ impl Angle {
         Angle {
             _angle: val / DEG_PER_RAD,
         }
+    }
+
+    pub fn new_from_arcsec(val: f64) -> Angle {
+        //! Creates a new instance of the object given an angle in arcseconds. 
+        Angle::new(val / ARCSEC_PER_DEG)
+    }
+
+    pub fn new_from_mas(val: f64) -> Angle {
+        //! Creates a new instance of the object given an angle in arcseconds. 
+        Angle::new(val / (MAS_PER_DEG))
     }
 
     pub fn new_from_hms(val: hms::HMS) -> Angle {
@@ -59,6 +72,10 @@ impl Angle {
 
     pub fn deg(&self) -> f64 {
         self._angle * DEG_PER_RAD
+    }
+
+    pub fn mas(&self) -> f64 {
+        self._angle * MAS_PER_RAD
     }
 
     pub fn sin(&self) -> f64 {
