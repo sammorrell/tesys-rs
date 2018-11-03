@@ -93,7 +93,7 @@ impl Angle {
 
 impl fmt::Debug for Angle {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{:2.2}°", self._angle)
+        write!(f, "{:2.2} rad", self._angle)
     }
 }
 
