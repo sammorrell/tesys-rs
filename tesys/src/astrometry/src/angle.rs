@@ -7,6 +7,8 @@ use std::ops::Add;
 use std::ops::AddAssign;
 use std::ops::Sub;
 use std::ops::Rem;
+use std::ops::Mul;
+use std::ops::Div;
 use std::ops::SubAssign;
 use std::cmp::Ordering;
 
@@ -219,6 +221,46 @@ impl Sub<i32> for Angle {
     fn sub(self, rhs: i32) -> Angle {
         Angle {
             _angle: self._angle - (rhs as f64),
+        }
+    }
+}
+
+impl Mul<f64> for Angle {
+    type Output = Angle;
+
+    fn mul(self, rhs: f64) -> Angle {
+        Angle {
+            _angle: self._angle * rhs,
+        }
+    }
+}
+
+impl Mul<i32> for Angle {
+    type Output = Angle;
+
+    fn mul(self, rhs: i32) -> Angle {
+        Angle {
+            _angle: self._angle * (rhs as f64),
+        }
+    }
+}
+
+impl Div<f64> for Angle {
+    type Output = Angle;
+
+    fn div(self, rhs: f64) -> Angle {
+        Angle {
+            _angle: self._angle / rhs,
+        }
+    }
+}
+
+impl Div<i32> for Angle {
+    type Output = Angle;
+
+    fn div(self, rhs: i32) -> Angle {
+        Angle {
+            _angle: self._angle / (rhs as f64),
         }
     }
 }
