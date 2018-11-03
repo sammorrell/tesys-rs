@@ -27,6 +27,9 @@ pub use azel::AzEl;
 mod location;
 pub use location::Location;
 
+mod propermotion;
+pub use propermotion::ProperMotion;
+
 mod skycoordinate;
 pub use skycoordinate::SkyCoordinate;
 
