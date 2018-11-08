@@ -19,14 +19,6 @@ pub struct ICRS{
 	equinox: DateTime<Utc>,
 }
 
-impl ICRS {
-	pub fn new() -> ICRS {
-		ICRS{
-			equinox: Utc.ymd(2000, 1, 1).and_hms(11, 59, 28),
-		}
-	}
-}
-
 impl SkyCoordinate<ICRS> {
     pub fn new(_ra: f64, _dec: f64) -> SkyCoordinate<ICRS> {
         let ra = Angle::new(_ra);
@@ -101,8 +93,14 @@ impl SkyCoordinate<ICRS> {
     }
 }
 
-impl Frame for ICRS{
+impl Frame for ICRS {
 	type Frame = ICRS;
+
+    fn new() -> Self::Frame {
+        ICRS{
+            equinox: Utc.ymd(2000, 1, 1).and_hms(11, 59, 28),
+        }
+    }
 }
 
 impl fmt::Display for SkyCoordinate<ICRS> {

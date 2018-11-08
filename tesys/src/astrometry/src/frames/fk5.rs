@@ -7,4 +7,10 @@ pub struct FK5 {
 
 impl Frame for FK5 {
 	type Frame = FK5;
+
+	fn new() -> Self::Frame {
+		FK5 {
+			
+		}
+	}
 }

@@ -5,6 +5,7 @@
 pub trait Frame: Sized + Clone {
 	type Frame;
 
+	fn new() -> Self::Frame;
 }
 
 pub trait CanTransformTo<F> {
