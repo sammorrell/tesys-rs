@@ -1,8 +1,10 @@
 extern crate tesys;
 extern crate chrono;
 
+use chrono::prelude::*;
 use std::env;
-use tesys::astrometry::{SkyCoordinate, Location};
+use tesys::astrometry::{SkyCoordinate, Location, Epoch, ProperMotion};
+use tesys::astrometry::frames::ICRS;
 use tesys::Peer;
 use chrono::Local;
 use tesys::astrometry::datetime::*;
@@ -21,15 +23,16 @@ fn main() -> Result<(), ()> {
 
     tesys::loggable::log("Starting Tesys...");
 
-    let coord = SkyCoordinate::new(57.4874099038135, 57.4874099038135);
+    let coord = SkyCoordinate::<ICRS>::new(279.23473479, 38.78368896).with_epoch(Epoch::j2000()).with_proper_motion(ProperMotion::new(200.94,  286.23)); // Vega
     tesys::loggable::log(&format!("{}", coord));
-    let ang = coord.ra.clone();
+    let ang = coord.ra();
     tesys::loggable::log(&format!("{}", ang));
 
     let dt = Local::now();
     let loc = Location::new(50.73778, -3.535278);
-    println!("{}", datetime_to_modified_julian_date(dt));
-    println!("{}", get_sidereal_time(dt, loc).to_hms());
+    tesys::loggable::log(&format!("{}", datetime_to_modified_julian_date(dt.with_timezone(&Utc))));
+    tesys::loggable::log(&format!("{}", get_sidereal_time(dt.with_timezone(&Utc), loc.clone()).to_hms()));
+    tesys::loggable::log(&format!("{}", coord.to_sky_position(dt, loc.clone())));
 
     tesys::loggable::log("Initialising Peer...");
     let mut _p = Peer::new();
