@@ -12,3 +12,5 @@ pub struct SkyCoordinate<F: Frame>  {
     pub _frame: F,
 }
 
+impl<F: Frame> SkyCoordinate<F> {
+}

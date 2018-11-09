@@ -1,4 +1,5 @@
 use frame::Frame;
+use CoordinateTransform;
 use frame::CanTransformTo;
 use chrono::{DateTime, Local, Utc};
 use Angle;
@@ -19,14 +20,11 @@ pub struct FK5 {
 	
 }
 
-impl SkyCoordinate<FK5
-> {
-    pub fn new(_ra: f64, _dec: f64) -> SkyCoordinate<FK5
-    > {
+impl SkyCoordinate<FK5> {
+    pub fn new(_ra: f64, _dec: f64) -> SkyCoordinate<FK5> {
         let ra = Angle::new(_ra);
         let dec = Angle::new(_dec);
-        SkyCoordinate { coords: vec!(ra, dec), _pm: ProperMotion::new(0., 0.), _epoch: Epoch::now(), _frame: FK5
-        	::new() }
+        SkyCoordinate { coords: vec!(ra, dec), _pm: ProperMotion::new(0., 0.), _epoch: Epoch::now(), _frame: FK5::new() }
     }
 
     pub fn with_epoch(mut self, _epoch: Epoch) -> Self {
@@ -113,9 +111,8 @@ impl fmt::Display for SkyCoordinate<FK5> {
 }
 
 impl Frame for FK5 {
-	type Frame = FK5;
 
-	fn new() -> Self::Frame {
+	fn new() -> Self {
 		FK5 {
 
 		}
@@ -123,8 +120,21 @@ impl Frame for FK5 {
 }
 
 impl CanTransformTo<ICRS> for SkyCoordinate<FK5> {
-	type Output = SkyCoordinate<ICRS>;
-	fn transform(self) -> Self::Output {
+    type From = FK5;
+
+	fn transform(self) -> SkyCoordinate<ICRS> {
 		SkyCoordinate { coords: self.coords, _pm: self._pm, _epoch: self._epoch, _frame: ICRS::new() }
 	}
+
+    fn transform_to(&self, _target: ICRS) -> CoordinateTransform<FK5, ICRS> {
+        CoordinateTransform::<FK5, ICRS>::new(self.clone()) 
+    }
+}
+
+impl CoordinateTransform<FK5, ICRS> {
+    pub fn finish(&self) -> SkyCoordinate<ICRS> {
+        let co = self.coords.clone();
+        let ret: SkyCoordinate<ICRS> = co.transform();
+        ret
+    }
 }

@@ -2,15 +2,21 @@
 /// system in the SkyCoordinate struct. 
 ///
 
-pub trait Frame: Sized + Clone {
-	type Frame;
+use CoordinateTransform;
+use SkyCoordinate;
 
-	fn new() -> Self::Frame;
+pub trait Frame: Sized + Clone {
+
+	fn new() -> Self;
 }
 
-pub trait CanTransformTo<F> {
-	type Output;
-	fn transform(self) -> Self::Output;
+pub trait CanTransformTo<T: Frame>: Clone {
+	type From: Frame;
+
+	fn transform(self) -> SkyCoordinate<T>;
+
+	fn transform_to(&self, _target: T) -> CoordinateTransform<Self::From, T> where
+	Self::From: Frame, T: Frame, Self: Clone;
 }
 
 // Import the reference frame stbibructs from the submodule.

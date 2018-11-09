@@ -6,9 +6,8 @@ pub struct Horizontal {
 }
 
 impl Frame for Horizontal {
-	type Frame = Horizontal;
 
-	fn new() -> Self::Frame {
+	fn new() -> Self {
 		Horizontal {
 			
 		}

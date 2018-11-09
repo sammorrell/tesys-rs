@@ -1,4 +1,5 @@
 use frame::Frame;
+use CoordinateTransform;
 use frame::CanTransformTo;
 use chrono::{DateTime, Local, Utc, TimeZone};
 use Angle;
@@ -94,9 +95,8 @@ impl SkyCoordinate<ICRS> {
 }
 
 impl Frame for ICRS {
-	type Frame = ICRS;
 
-    fn new() -> Self::Frame {
+    fn new() -> Self {
         ICRS{
             equinox: Utc.ymd(2000, 1, 1).and_hms(11, 59, 28),
         }
@@ -118,8 +118,20 @@ impl fmt::Display for SkyCoordinate<ICRS> {
 }
 
 impl CanTransformTo<FK5> for SkyCoordinate<ICRS> {
-	type Output = SkyCoordinate<FK5>;
-	fn transform(self) -> Self::Output {
-		SkyCoordinate { coords: self.coords, _pm: self._pm, _epoch: self._epoch, _frame: FK5 {} }
+    type From = ICRS;
+	
+	fn transform(self) -> SkyCoordinate<FK5> {
+		SkyCoordinate { coords: self.coords, _pm: self._pm, _epoch: self._epoch, _frame: FK5::new() }
 	}
+    fn transform_to(&self, _target: FK5) -> CoordinateTransform<ICRS, FK5> {
+        CoordinateTransform::<Self::From, FK5>::new(self.clone()) 
+    }
+}
+
+impl CoordinateTransform<ICRS, FK5> {
+    pub fn finish(&self) -> SkyCoordinate<FK5> {
+        let co = self.coords.clone();
+        let ret: SkyCoordinate<FK5> = co.transform();
+        ret
+    }
 }

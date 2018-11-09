@@ -35,7 +35,12 @@ pub use location::Location;
 mod propermotion;
 pub use propermotion::ProperMotion;
 
+mod transform;
+pub use transform::CoordinateTransform;
+
 pub mod frame;
+pub use frame::Frame;
+
 pub mod frames;
 
 mod skycoordinate;
