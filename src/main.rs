@@ -25,8 +25,9 @@ fn main() -> Result<(), ()> {
     tesys::loggable::log("Starting Tesys...");
 
     let coord = SkyCoordinate::<ICRS>::new(279.23473479, 38.78368896).with_epoch(Epoch::j2000()).with_proper_motion(ProperMotion::new(200.94,  286.23)); // Vega
-    let c1 = coord.clone().transform<FK5>();
+    let c1: SkyCoordinate<FK5> = coord.clone().transform();
     tesys::loggable::log(&format!("{}", coord));
+    tesys::loggable::log(&format!("{}", c1));
     let ang = coord.ra();
     tesys::loggable::log(&format!("{}", ang));
 
