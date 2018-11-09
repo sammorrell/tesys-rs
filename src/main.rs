@@ -4,7 +4,7 @@ extern crate chrono;
 use tesys::astrometry::frame::CanTransformTo;
 use chrono::prelude::*;
 use std::env;
-use tesys::astrometry::{SkyCoordinate, Location, Epoch, ProperMotion};
+use tesys::astrometry::{SkyCoordinate, Location, Epoch, ProperMotion, Frame};
 use tesys::astrometry::frames::{ICRS, FK5};
 use tesys::Peer;
 use chrono::Local;
@@ -25,7 +25,7 @@ fn main() -> Result<(), ()> {
     tesys::loggable::log("Starting Tesys...");
 
     let coord = SkyCoordinate::<ICRS>::new(279.23473479, 38.78368896).with_epoch(Epoch::j2000()).with_proper_motion(ProperMotion::new(200.94,  286.23)); // Vega
-    let c1: SkyCoordinate<FK5> = coord.clone().transform();
+    let c1 = coord.transform_to(FK5::new()).finish();
     tesys::loggable::log(&format!("{}", coord));
     tesys::loggable::log(&format!("{}", c1));
     let ang = coord.ra();
