@@ -111,8 +111,8 @@ impl fmt::Display for SkyCoordinate<ICRS> {
         let dec_neg_str = if dec_dms.neg { "-" } else { "" };
         write!(
             f,
-            "RA ({}) = {}{:0>2}:{:0>2}:{:2.2}, DEC ({}) = {}{:0>2}:{:0>2}:{:2.2}",
-            self.epoch(), ra_neg_str, ra_hms.h, ra_hms.m, ra_hms.s, self.epoch(), dec_neg_str, dec_dms.d, dec_dms.m, dec_dms.s
+            "(ICRS: {}): RA = {}{:0>2}:{:0>2}:{:2.2}, DEC = {}{:0>2}:{:0>2}:{:2.2}",
+            self.epoch(), ra_neg_str, ra_hms.h, ra_hms.m, ra_hms.s, dec_neg_str, dec_dms.d, dec_dms.m, dec_dms.s
         )
     }
 }
