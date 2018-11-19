@@ -11,6 +11,7 @@ pub use self::peer::Peer;
 pub mod loggable;
 pub use self::loggable::Loggable;
 
+#[macro_use]
 pub mod plugin;
 pub use self::plugin::Plugin;
 
