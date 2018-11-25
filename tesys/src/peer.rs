@@ -14,15 +14,12 @@ impl Peer {
     }
 
     pub fn load_plugins(&mut self) {
-        unsafe {
-            let pg = self
-                .plugin_manager
-                .load("target/debug/libtesys_example_plugin.dylib".to_string());
+        self.plugin_manager.add_plugin_search_directory("./target/debug/");
+        let pg = self.plugin_manager.load("tesys_example_plugin");
 
-            match pg {
-                Ok(p) => p.test(),
-                Err(e) => Self::err(&format!("Unable to load plugin: {}. ", e)),
-            }
+        match pg {
+            Ok(p) => p.test(),
+            Err(e) => Self::err(&format!("Unable to load plugin: {}. ", e)),
         }
     }
 }
