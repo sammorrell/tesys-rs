@@ -15,7 +15,7 @@ use datetime::*;
 
 use frames::icrs::ICRS;
 
-#[derive(Clone)]
+#[derive(Clone,Debug)]
 pub struct FK5 {
 	
 }

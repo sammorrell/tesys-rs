@@ -15,7 +15,7 @@ use datetime::*;
 
 use frames::fk5::FK5;
 
-#[derive(Clone)]
+#[derive(Clone,Debug)]
 pub struct ICRS{
 	equinox: DateTime<Utc>,
 }

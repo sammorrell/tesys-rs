@@ -1,6 +1,6 @@
 use frame::Frame;
 
-#[derive(Clone)]
+#[derive(Clone,Debug)]
 pub struct Horizontal {
 	
 }

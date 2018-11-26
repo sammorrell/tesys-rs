@@ -2,7 +2,7 @@ use Angle;
 
 use std::fmt;
 
-#[derive(Clone)]
+#[derive(Clone,Debug)]
 pub struct ProperMotion {
 	pub pmra: Angle,
 	pub pmdec: Angle,

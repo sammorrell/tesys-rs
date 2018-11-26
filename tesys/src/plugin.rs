@@ -1,4 +1,5 @@
 use std::any::Any;
+use std::fmt::Debug;
 
 #[macro_export]
 macro_rules! tesys_plugin_create {
@@ -22,7 +23,7 @@ macro_rules! tesys_plugin_destroy {
 	)
 }
 
-pub trait Plugin: Any + Send + Sync {
+pub trait Plugin: Any + Send + Sync + Debug {
     fn new() -> Self
     where
         Self: Sized;

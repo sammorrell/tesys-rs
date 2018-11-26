@@ -14,7 +14,7 @@ tesys_plugin_create!(ExamplePlugin);
 tesys_plugin_destroy!(ExamplePlugin);
 
 #[allow(dead_code)]
-#[derive(Loggable)]
+#[derive(Loggable, Debug)]
 pub struct ExamplePlugin {
     label: String,
     coord: SkyCoordinate<ICRS>,

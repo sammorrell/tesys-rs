@@ -5,7 +5,7 @@ use chrono::prelude::*;
 use std::fmt;
 use datetime::*;
 
-#[derive(Clone)]
+#[derive(Clone,Debug)]
 pub struct Epoch {
 	_ref: DateTime<Utc>
 }

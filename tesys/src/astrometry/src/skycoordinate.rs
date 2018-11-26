@@ -4,7 +4,7 @@ use Epoch;
 use std::vec::Vec;
 use frame::Frame;
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct SkyCoordinate<F: Frame>  {
     pub coords: Vec<Angle>,
     pub _pm: ProperMotion,
