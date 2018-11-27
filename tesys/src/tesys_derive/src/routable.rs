@@ -9,7 +9,6 @@ pub fn impl_routable(ast: &syn::DeriveInput) -> TokenStream {
     let gen = quote! {
         impl Routable for #name {
             fn recv(&mut self){
-            	println!("{}", self.test_field);
             }
         }
     };
