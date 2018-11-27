@@ -1,4 +1,5 @@
-use loggable::*;
+use loggable;
+use loggable::Loggable;
 use PluginManager;
 
 #[derive(Loggable)]
@@ -19,7 +20,7 @@ impl Peer {
 
         match pg {
             Ok(p) => p.test(),
-            Err(e) => Self::err(&format!("Unable to load plugin: {}. ", e)),
+            Err(e) => tesys_err!("Unable to load plugin: {}. ", e),
         }
     }
 }

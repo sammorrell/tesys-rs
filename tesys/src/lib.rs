@@ -3,13 +3,14 @@ extern crate lazy_static;
 #[macro_use]
 extern crate tesys_derive;
 
+#[macro_use]
+pub mod loggable;
+pub use self::loggable::Loggable;
+
 pub extern crate tesys_astrometry as astrometry;
 
 mod peer;
 pub use self::peer::Peer;
-
-pub mod loggable;
-pub use self::loggable::Loggable;
 
 pub mod routable;
 pub use self::routable::Routable;

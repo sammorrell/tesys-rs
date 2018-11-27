@@ -2,9 +2,10 @@
 extern crate tesys;
 #[macro_use]
 extern crate tesys_derive;
+use tesys::Loggable;
 use tesys::astrometry::SkyCoordinate;
 use tesys::astrometry::frames::ICRS;
-use tesys::loggable::*;
+use tesys::loggable;
 use tesys::Plugin;
 use tesys::Routable;
 
@@ -33,10 +34,11 @@ impl Plugin for ExamplePlugin {
     );
 
     fn test(&mut self) {
-        Self::warn(&format!("{}", self.coord));
+        tesys_log!(Self, "Test: {}", self.test_field);
+        tesys_warn!(Self, "{}", self.coord);
         self.coord.coords[0] += 137.6;
         self.coord.coords[1] += 86.3;
-        Self::warn(&format!("{}", self.coord));
+        tesys_warn!(Self, "{}", self.coord);
         test_test(self);
     }
 }

@@ -8,13 +8,12 @@ lazy_static! {
     pub static ref LOGGABLE_MTX: Mutex<i8> = Mutex::new(0);
 }
 
+#[allow(dead_code)]
+
 pub trait Loggable {
-    fn log(str: &str);
-    fn warn(str: &str);
-    fn err(str: &str);
+    fn _loggable_ident() -> &'static str;
 }
 
-#[allow(dead_code)]
 pub fn log(str: &str) {
     let _mtx = LOGGABLE_MTX.lock().unwrap();
     println!(
@@ -23,7 +22,6 @@ pub fn log(str: &str) {
     );
 }
 
-#[allow(dead_code)]
 pub fn warn(str: &str) {
     let _mtx = LOGGABLE_MTX.lock().unwrap();
     println!(
@@ -32,7 +30,7 @@ pub fn warn(str: &str) {
     );
 }
 
-#[allow(dead_code)]
+
 pub fn err(str: &str) {
     let _mtx = LOGGABLE_MTX.lock().unwrap();
     println!(
@@ -40,3 +38,58 @@ pub fn err(str: &str) {
         format!("[ {} ] {}", "Error".magenta().bold(), str.red())
     );
 }
+
+pub fn log_labelled(str: &str, com: &str) {
+    let _mtx = LOGGABLE_MTX.lock().unwrap();
+    println!(
+        "{}",
+        format!("[ {} : {} ] {}", com.white().bold(), "Info".magenta().bold(), str.green())
+    );
+}
+
+pub fn warn_labelled(str: &str, com: &str) {
+    let _mtx = LOGGABLE_MTX.lock().unwrap();
+    println!(
+        "{}",
+        format!("[ {} : {} ] {}", com.white().bold(), "Warning".magenta().bold(), str.yellow())
+    );
+}
+
+pub fn err_labelled(str: &str, com: &str) {
+    let _mtx = LOGGABLE_MTX.lock().unwrap();
+    println!(
+        "{}",
+        format!("[ {} : {} ] {}", com.white().bold(), "Error".magenta().bold(), str.red())
+    );
+}
+
+#[macro_export]
+macro_rules! tesys_log {
+    ($self:ident, $ ( $ arg : tt ) *) => {
+        loggable::log_labelled(&format!( $ ( $ arg ) * ), $self::_loggable_ident() );
+    };
+    ($ ( $ arg : tt ) *) => {
+        loggable::log(&format!( $ ( $ arg ) * ));
+    };
+}
+
+#[macro_export]
+macro_rules! tesys_warn {
+    ($self:ident, $ ( $ arg : tt ) *) => {
+        loggable::warn_labelled(&format!( $ ( $ arg ) * ), $self::_loggable_ident() );
+    };
+    ($ ( $ arg : tt ) *) => {
+        loggable::warn(&format!( $ ( $ arg ) * ));
+    };
+}
+
+#[macro_export]
+macro_rules! tesys_err {
+    ($self:ident, $ ( $ arg : tt ) *) => {
+        loggable::err_labelled(&format!( $ ( $ arg ) * ), $self::_loggable_ident() );
+    };
+    ($ ( $ arg : tt ) *) => {
+        loggable::err(&format!( $ ( $ arg ) * ));
+    };
+}
+

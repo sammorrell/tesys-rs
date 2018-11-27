@@ -2,7 +2,8 @@ extern crate libloading;
 use self::libloading::{Library, Symbol};
 use std::path::Path;
 
-use loggable::*;
+use loggable;
+use loggable::Loggable;
 use Plugin;
 
 const _PLUGIN_CREATE_SYMBOL: &[u8] = b"_create_plugin";
@@ -48,14 +49,14 @@ impl PluginManager {
                 if Path::new(libtr).exists() {
                     return Ok(libtr.to_owned());
                 }  else {
-                    Self::err(&format!("Unable to find plugin '{}' at relative path. ", lib));
+                    tesys_err!(Self, "Unable to find plugin '{}' at relative path. ", lib);
                 }
             } else if &lib[0..1] == "/" {
                 // If it's absolute, we don't need to resolve, so just check if the file exists
                 if Path::new(lib).exists() {
                     return Ok(lib.to_owned());
                 } else {
-                    Self::err(&format!("Unable to find plugin '{}' at absolute path. ", lib));
+                    tesys_err!(Self, "Unable to find plugin '{}' at absolute path. ", lib);
                 }
             }  else {
                 // Assume it's an relative path, so prepend the library dir
@@ -90,14 +91,14 @@ impl PluginManager {
             }
         }
 
-        Self::err(&format!("Unable to find resolve plugin '{}'.", lib));
+        tesys_err!("Unable to find resolve plugin '{}'.", lib);
         Err(())
     }
 
     unsafe fn _load_plugin(&mut self, path: String) -> Result<&mut Box<Plugin>, String> {
         type PluginCreate = unsafe fn() -> *mut Plugin;
 
-        Self::log(&format!("Loading Plugin: {}", path));
+        tesys_log!("Loading Plugin: {}", path);
 
         let lib = Library::new(path);
         match lib {
