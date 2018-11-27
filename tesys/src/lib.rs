@@ -11,6 +11,9 @@ pub use self::peer::Peer;
 pub mod loggable;
 pub use self::loggable::Loggable;
 
+pub mod routable;
+pub use self::routable::Routable;
+
 #[macro_use]
 pub mod plugin;
 pub use self::plugin::Plugin;
