@@ -23,6 +23,34 @@ macro_rules! tesys_plugin_destroy {
 	)
 }
 
+// Inspired by: https://stackoverflow.com/questions/45232838/is-it-possible-to-automatically-define-fields-of-a-struct
+#[macro_export]
+macro_rules! tesys_plugin {
+	($struct:ident { $( $field:ident:$type:ty, )* }) => {
+		#[derive(Debug,Clone,Loggable,Routable)]
+        pub struct $struct {
+            test_field: String,
+            $(
+                $field: $type,
+            )*
+        }
+    };
+}
+
+#[macro_export]
+macro_rules! tesys_plugin_new {
+	($( $field:ident:$value:expr, )*) => {
+		fn new() -> Self {
+			Self {
+				test_field: "Test".to_owned(),
+				$(
+	                $field: $value,
+	            )*
+			}
+		}
+	}
+}
+
 pub trait Plugin: Any + Send + Sync + Debug {
     fn new() -> Self
     where
