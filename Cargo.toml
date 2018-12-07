@@ -8,6 +8,7 @@ members = [
 name = "tesys-rs"
 version = "0.1.0"
 authors = ["Sam Morrell <samuelmorrell@gmail.com>"]
+edition = "2018"
 
 [dependencies]
 tesys = { path = "tesys/"}
