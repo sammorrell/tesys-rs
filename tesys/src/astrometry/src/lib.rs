@@ -13,38 +13,38 @@ const DEFAULT_WRAP_MAX_ANGLE: f64 = 2.0 * std::f64::consts::PI;
 const DEFAULT_WRAP_MIN_ANGLE: f64 = 0.0;
 
 pub mod epoch;
-pub use epoch::Epoch;
+pub use crate::epoch::Epoch;
 
 pub mod datetime;
 
 mod angle;
-pub use angle::Angle;
+pub use crate::angle::Angle;
 
 mod hms;
-pub use hms::HMS;
+pub use crate::hms::HMS;
 
 mod dms;
-pub use dms::DMS;
+pub use crate::dms::DMS;
 
 mod azel;
-pub use azel::AzEl;
+pub use crate::azel::AzEl;
 
 mod location;
-pub use location::Location;
+pub use crate::location::Location;
 
 mod propermotion;
-pub use propermotion::ProperMotion;
+pub use crate::propermotion::ProperMotion;
 
 mod transform;
-pub use transform::CoordinateTransform;
+pub use crate::transform::CoordinateTransform;
 
 pub mod frame;
-pub use frame::Frame;
+pub use crate::frame::Frame;
 
 pub mod frames;
 
 mod skycoordinate;
-pub use skycoordinate::SkyCoordinate;
+pub use crate::skycoordinate::SkyCoordinate;
 
 pub fn wrap_angle(val: f64) -> f64 {
     // This is used to wrap the angle between the limits specified within the code.

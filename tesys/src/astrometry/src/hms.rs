@@ -1,5 +1,5 @@
 use std::fmt;
-use HOUR_PER_RAD;
+use crate::HOUR_PER_RAD;
 
 pub struct HMS {
     pub h: i8,

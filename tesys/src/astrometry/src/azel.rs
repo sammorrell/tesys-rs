@@ -1,4 +1,4 @@
-use angle::Angle;
+use crate::angle::Angle;
 use std::fmt;
 
 pub struct AzEl {

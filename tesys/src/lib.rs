@@ -5,19 +5,19 @@ extern crate tesys_derive;
 
 #[macro_use]
 pub mod loggable;
-pub use self::loggable::Loggable;
+pub use crate::loggable::Loggable;
 
 pub extern crate tesys_astrometry as astrometry;
 
 mod peer;
-pub use self::peer::Peer;
+pub use crate::peer::Peer;
 
 pub mod routable;
-pub use self::routable::Routable;
+pub use crate::routable::Routable;
 
 #[macro_use]
 pub mod plugin;
-pub use self::plugin::Plugin;
+pub use crate::plugin::Plugin;
 
 pub mod pluginmanager;
-pub use self::pluginmanager::PluginManager;
+pub use crate::pluginmanager::PluginManager;

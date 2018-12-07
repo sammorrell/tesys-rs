@@ -1,19 +1,19 @@
-use frame::Frame;
-use CoordinateTransform;
-use frame::CanTransformTo;
-use chrono::{DateTime, Local, Utc, TimeZone};
-use Angle;
-use AzEl;
-use Location;
-use ProperMotion;
-use Epoch;
-use SkyCoordinate;
+use crate::frame::Frame;
+use crate::CoordinateTransform;
+use crate::frame::CanTransformTo;
+use crate::chrono::{DateTime, Local, Utc, TimeZone};
+use crate::Angle;
+use crate::AzEl;
+use crate::Location;
+use crate::ProperMotion;
+use crate::Epoch;
+use crate::SkyCoordinate;
 
 use std::fmt;
 use std::f64;
-use datetime::*;
+use crate::datetime::*;
 
-use frames::fk5::FK5;
+use crate::frames::fk5::FK5;
 
 #[derive(Clone,Debug)]
 pub struct ICRS{

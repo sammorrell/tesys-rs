@@ -1,5 +1,5 @@
-use dms;
-use hms;
+use crate::dms;
+use crate::hms;
 use std::clone::Clone;
 use std::fmt;
 
@@ -12,10 +12,10 @@ use std::ops::Div;
 use std::ops::SubAssign;
 use std::cmp::Ordering;
 
-use DEG_PER_RAD;
-use MAS_PER_RAD;
-use ARCSEC_PER_DEG;
-use MAS_PER_DEG;
+use crate::DEG_PER_RAD;
+use crate::MAS_PER_RAD;
+use crate::ARCSEC_PER_DEG;
+use crate::MAS_PER_DEG;
 
 pub struct Angle {
     _angle: f64, // Measured in radians

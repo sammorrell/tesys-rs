@@ -2,9 +2,9 @@ extern crate libloading;
 use self::libloading::{Library, Symbol};
 use std::path::Path;
 
-use loggable;
-use loggable::Loggable;
-use Plugin;
+use crate::loggable;
+use crate::loggable::Loggable;
+use crate::Plugin;
 
 const _PLUGIN_CREATE_SYMBOL: &[u8] = b"_create_plugin";
 const _PLUGIN_DESTROY_SYMBOL: &[u8] = b"_destroy_symbol";

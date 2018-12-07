@@ -1,6 +1,6 @@
-use loggable;
-use loggable::Loggable;
-use PluginManager;
+use crate::loggable;
+use crate::loggable::Loggable;
+use crate::PluginManager;
 
 #[derive(Loggable)]
 pub struct Peer {

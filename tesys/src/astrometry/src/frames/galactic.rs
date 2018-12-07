@@ -1,4 +1,4 @@
-use frame::Frame;
+use crate::frame::Frame;
 
 #[derive(Clone,Debug)]
 pub struct Galactic {

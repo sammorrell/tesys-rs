@@ -1,6 +1,6 @@
-use Location;
-use SkyCoordinate;
-use frame::Frame;
+use crate::Location;
+use crate::SkyCoordinate;
+use crate::frame::Frame;
 use chrono::{DateTime, Utc};
 
 #[derive(Clone)]

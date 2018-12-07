@@ -2,8 +2,8 @@
 /// system in the SkyCoordinate struct. 
 ///
 
-use CoordinateTransform;
-use SkyCoordinate;
+use crate::CoordinateTransform;
+use crate::SkyCoordinate;
 
 pub trait Frame: Sized + Clone {
 
@@ -20,5 +20,5 @@ pub trait CanTransformTo<T: Frame>: Clone {
 }
 
 // Import the reference frame stbibructs from the submodule.
-pub use frames::icrs::ICRS;
-pub use frames::fk5::FK5;
+pub use crate::frames::icrs::ICRS;
+pub use crate::frames::fk5::FK5;

@@ -1,8 +1,8 @@
-use Angle;
-use ProperMotion;
-use Epoch;
+use crate::Angle;
+use crate::ProperMotion;
+use crate::Epoch;
 use std::vec::Vec;
-use frame::Frame;
+use crate::frame::Frame;
 
 #[derive(Clone, Debug)]
 pub struct SkyCoordinate<F: Frame>  {

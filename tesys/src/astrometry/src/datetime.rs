@@ -1,6 +1,6 @@
 use chrono::{DateTime, Utc};
-use Angle;
-use Location;
+use crate::Angle;
+use crate::Location;
 
 pub const SECONDS_PER_SIDEREAL_DAY: f64 = 24.0 * 3600.0; // The number of seconds in 24 hours, given in f64. 
 pub const DAYS_PER_SIDEREAL_YEAR: f64 = 365.25636;

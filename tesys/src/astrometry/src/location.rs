@@ -1,4 +1,4 @@
-use Angle;
+use crate::Angle;
 
 #[derive(Clone)]
 pub struct Location {
