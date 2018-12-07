@@ -15,6 +15,9 @@ pub use crate::peer::Peer;
 pub mod routable;
 pub use crate::routable::Routable;
 
+pub mod exchange;
+pub use crate::exchange::Exchange;
+
 #[macro_use]
 pub mod plugin;
 pub use crate::plugin::Plugin;

@@ -1,5 +1,6 @@
 use std::any::Any;
 use std::fmt::Debug;
+pub use crate::Exchange;
 
 #[macro_export]
 macro_rules! tesys_plugin_create {
@@ -30,6 +31,7 @@ macro_rules! tesys_plugin {
 		#[derive(Debug,Clone,Loggable,Routable)]
         pub struct $struct {
             test_field: String,
+            _exchange: tesys::Exchange,
             $(
                 $field: $type,
             )*
@@ -43,6 +45,7 @@ macro_rules! tesys_plugin_new {
 		fn new() -> Self {
 			Self {
 				test_field: "Test".to_owned(),
+				_exchange: tesys::Exchange::new(),
 				$(
 	                $field: $value,
 	            )*
