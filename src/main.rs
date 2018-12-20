@@ -9,7 +9,6 @@ use tesys::astrometry::frames::{ICRS, FK5};
 use tesys::Peer;
 use chrono::Local;
 use tesys::astrometry::datetime::*;
-use tesys::Exchange;
 
 fn main() -> Result<(), ()> {
     // Let's first check and see if we have a config file as a command line argument

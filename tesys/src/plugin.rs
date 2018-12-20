@@ -30,8 +30,6 @@ macro_rules! tesys_plugin {
 	($struct:ident { $( $field:ident:$type:ty, )* }) => {
 		#[derive(Debug,Clone,Loggable,Routable)]
         pub struct $struct {
-            test_field: String,
-            _exchange: tesys::Exchange,
             $(
                 $field: $type,
             )*
@@ -44,8 +42,6 @@ macro_rules! tesys_plugin_new {
 	($( $field:ident:$value:expr, )*) => {
 		fn new() -> Self {
 			Self {
-				test_field: "Test".to_owned(),
-				_exchange: tesys::Exchange::new(),
 				$(
 	                $field: $value,
 	            )*
@@ -60,3 +56,4 @@ pub trait Plugin: Any + Send + Sync + Debug {
         Self: Sized;
     fn test(self: &mut Self);
 }
+

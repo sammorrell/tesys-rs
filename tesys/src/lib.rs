@@ -12,15 +12,21 @@ pub extern crate tesys_astrometry as astrometry;
 mod peer;
 pub use crate::peer::Peer;
 
-pub mod routable;
+mod router;
+pub use crate::router::Router;
+
+mod routable;
 pub use crate::routable::Routable;
 
-pub mod exchange;
+mod exchange;
 pub use crate::exchange::Exchange;
 
 #[macro_use]
 pub mod plugin;
 pub use crate::plugin::Plugin;
 
-pub mod pluginmanager;
+mod pluginhost;
+pub use crate::pluginhost::PluginHost;
+
+mod pluginmanager;
 pub use crate::pluginmanager::PluginManager;

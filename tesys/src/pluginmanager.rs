@@ -5,6 +5,7 @@ use std::path::Path;
 use crate::loggable;
 use crate::loggable::Loggable;
 use crate::Plugin;
+use crate::Router;
 
 const _PLUGIN_CREATE_SYMBOL: &[u8] = b"_create_plugin";
 const _PLUGIN_DESTROY_SYMBOL: &[u8] = b"_destroy_symbol";
@@ -16,6 +17,9 @@ pub struct PluginManager {
 
     // The vector containing plugin search paths
     plugin_search_paths: Vec<&'static str>,
+
+    // Let's get an instance of a router so that we can route to our plugins
+    router: Router
 }
 
 impl PluginManager {
@@ -24,14 +28,20 @@ impl PluginManager {
             loaded_plugins: Vec::new(),
             loaded_libraries: Vec::new(),
             plugin_search_paths: vec!("./"),
+            router: Router::new(),
         };
 
         pl // Return our new plugin manager instance
     }
 
-    pub fn load(&mut self, id: &'static str) -> Result<&mut Box<Plugin>, String> {
+    pub fn load(&mut self, id: &'static str) -> Result<(), String> {
         match self._resolve_plugin_lib(id) {
-            Ok(path) => unsafe{ self._load_plugin(path.to_string()) },
+            Ok(path) => unsafe{ 
+                match self._load_plugin(path.to_string()) {
+                    Ok(_pg) => Ok(()),
+                    Err(_e) => Err(format!("Unable to load plugin '{}'", id).to_string())
+                } 
+            },
             Err(_e) => Err(format!("Unable to resolve library for plugin '{}'", id).to_string()),
         }
     }
@@ -109,7 +119,7 @@ impl PluginManager {
                     Ok(sym) => {
                         let func = sym as Symbol<PluginCreate>;
                         let pg_raw = func();
-                        let mut pg = Box::from_raw(pg_raw);
+                        let pg = Box::from_raw(pg_raw);
                         // Yes, I know this isn't technically good rust, but we're in
                         // unsafe code anyway. I'd prefer to keep an immutable reference
                         // to all plugins loaded so we can control memory rather than let

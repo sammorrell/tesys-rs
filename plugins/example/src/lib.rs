@@ -34,7 +34,7 @@ impl Plugin for ExamplePlugin {
     );
 
     fn test(&mut self) {
-        tesys_log!(Self, "Test: {}", self.test_field);
+        tesys_log!(Self, "Test. ");
         tesys_warn!(Self, "{}", self.coord);
         self.coord.coords[0] += 137.6;
         self.coord.coords[1] += 86.3;
@@ -45,5 +45,4 @@ impl Plugin for ExamplePlugin {
 
 fn test_test( pg: &mut ExamplePlugin) {
     println!("Testing function call.");
-    println!("{}", pg.test_field);
 }

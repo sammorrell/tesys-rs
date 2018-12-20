@@ -16,11 +16,11 @@ impl Peer {
 
     pub fn load_plugins(&mut self) {
         self.plugin_manager.add_plugin_search_directory("./target/debug/");
-        let pg = self.plugin_manager.load("tesys_example_plugin");
+        let pg_res = self.plugin_manager.load("tesys_example_plugin");
 
-        match pg {
-            Ok(p) => p.test(),
-            Err(e) => tesys_err!("Unable to load plugin: {}. ", e),
-        }
+        match pg_res {
+            Ok(_e) => (),
+            Err(_e) => println!("Unable to load plugin: {}", _e),
+        };
     }
 }
