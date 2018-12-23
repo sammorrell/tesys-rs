@@ -1,19 +1,13 @@
-extern crate libloading;
-use self::libloading::{Library, Symbol};
 use std::path::Path;
 
 use crate::loggable;
 use crate::loggable::Loggable;
-use crate::Plugin;
 use crate::Router;
-
-const _PLUGIN_CREATE_SYMBOL: &[u8] = b"_create_plugin";
-const _PLUGIN_DESTROY_SYMBOL: &[u8] = b"_destroy_symbol";
+use crate::PluginHost;
 
 #[derive(Loggable)]
 pub struct PluginManager {
-    loaded_plugins: Vec<Box<Plugin>>,
-    loaded_libraries: Vec<Library>,
+    hosts: Vec<PluginHost>,
 
     // The vector containing plugin search paths
     plugin_search_paths: Vec<&'static str>,
@@ -25,8 +19,7 @@ pub struct PluginManager {
 impl PluginManager {
     pub fn new() -> PluginManager {
         let pl = PluginManager {
-            loaded_plugins: Vec::new(),
-            loaded_libraries: Vec::new(),
+            hosts: Vec::new(),
             plugin_search_paths: vec!("./"),
             router: Router::new(),
         };
@@ -35,18 +28,24 @@ impl PluginManager {
     }
 
     pub fn load(&mut self, id: &'static str) -> Result<(), String> {
-        match self._resolve_plugin_lib(id) {
-            Ok(path) => unsafe{ 
-                match self._load_plugin(path.to_string()) {
-                    Ok(_pg) => Ok(()),
-                    Err(_e) => Err(format!("Unable to load plugin '{}'", id).to_string())
-                } 
+        match self.resolve_plugin_lib(id) {
+            Ok(path) => match PluginHost::load(path.to_string()) {
+                Ok(mut pgh) => {
+                    // THIS IS TESTING TO CODE TO MAKRE SURE WE CAN ACCESS THE PLUGIN METHODS - IT SHOULD BE REMOVED. 
+                    match &mut pgh.pg {
+                        None => (),
+                        Some(pgl) => pgl.test(),
+                    }
+                    self.hosts.push(pgh);
+                    Ok(())
+                },
+                Err(_e) => Err(format!("Unable to load plugin '{}'", id).to_string())
             },
             Err(_e) => Err(format!("Unable to resolve library for plugin '{}'", id).to_string()),
         }
     }
 
-    fn _resolve_plugin_lib(&self, lib: &'static str) -> Result<String, ()> {
+    fn resolve_plugin_lib(&self, lib: &'static str) -> Result<String, ()> {
         let plugin_search_paths = self.plugin_search_paths.clone();
         let mut base = String::new();
         let mut dir = String::new();
@@ -103,36 +102,6 @@ impl PluginManager {
 
         tesys_err!("Unable to find resolve plugin '{}'.", lib);
         Err(())
-    }
-
-    unsafe fn _load_plugin(&mut self, path: String) -> Result<&mut Box<Plugin>, String> {
-        type PluginCreate = unsafe fn() -> *mut Plugin;
-
-        tesys_log!("Loading Plugin: {}", path);
-
-        let lib = Library::new(path);
-        match lib {
-            Ok(l) => {
-                self.loaded_libraries.push(l);
-                let lib = self.loaded_libraries.last().unwrap();
-                match lib.get(_PLUGIN_CREATE_SYMBOL) {
-                    Ok(sym) => {
-                        let func = sym as Symbol<PluginCreate>;
-                        let pg_raw = func();
-                        let pg = Box::from_raw(pg_raw);
-                        // Yes, I know this isn't technically good rust, but we're in
-                        // unsafe code anyway. I'd prefer to keep an immutable reference
-                        // to all plugins loaded so we can control memory rather than let
-                        // the references go loose into the rest of the code.
-                        self.loaded_plugins.push(pg);
-                        let pg = self.loaded_plugins.last_mut().unwrap();
-                        Ok(pg)
-                    }
-                    Err(_e) => Err(format!("Unable to load _create symbol: {}", _e).to_string()),
-                }
-            }
-            Err(_e) => Err(format!("Unable to load library file: {}", _e).to_string()),
-        }
     }
 
     pub fn add_plugin_search_directory(&mut self, path: &'static str) {
