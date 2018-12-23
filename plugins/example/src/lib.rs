@@ -43,6 +43,6 @@ impl Plugin for ExamplePlugin {
     }
 }
 
-fn test_test( pg: &mut ExamplePlugin) {
+fn test_test(_pg: &mut ExamplePlugin) {
     println!("Testing function call.");
 }
