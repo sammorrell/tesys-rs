@@ -55,6 +55,13 @@ impl PluginHost {
 
 	}
 
+	pub fn test(&mut self) {
+		match &mut self.pg {
+			None => (),
+			Some(p) => p.test(),
+		};
+	}
+
 	pub fn load(path: String) -> Result<PluginHost, String> {
 		let mut pgh = PluginHost::new();
 		unsafe{ 

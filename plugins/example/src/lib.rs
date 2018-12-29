@@ -8,6 +8,7 @@ use tesys::astrometry::frames::ICRS;
 use tesys::loggable;
 use tesys::Plugin;
 use tesys::Routable;
+use tesys::codegen::*;
 
 // We call into the macros to write the extern C functions
 // which allow us to easily create and destroy our Rust
@@ -18,6 +19,7 @@ tesys_plugin_destroy!(ExamplePlugin);
 tesys_plugin!(ExamplePlugin {
     label: String,
     coord: SkyCoordinate<ICRS>,
+    handlers: Vec<&'static StaticHandlerInfo<ExamplePlugin>>,
 });
 
 impl Plugin for ExamplePlugin {
@@ -31,6 +33,7 @@ impl Plugin for ExamplePlugin {
     tesys_plugin_new!(
         label: "".to_string(),
         coord: SkyCoordinate::<ICRS>::new(0.0, 0.0),
+        handlers: vec!(&test_handler_handler),
     );
 
     fn test(&mut self) {
@@ -39,10 +42,17 @@ impl Plugin for ExamplePlugin {
         self.coord.coords[0] += 137.6;
         self.coord.coords[1] += 86.3;
         tesys_warn!(Self, "{}", self.coord);
-        test_test(self);
     }
 }
 
-fn test_test(_pg: &mut ExamplePlugin) {
+// Start of the handler setup for plugins. 
+static test_handler_handler: StaticHandlerInfo<ExamplePlugin>  = StaticHandlerInfo {
+    name: "test_handler",
+    handler: test_handler,
+};
+
+// Experimenting with the handle attribute 
+#[handle("test", return=String)]
+fn test_handler(_pg: Box<ExamplePlugin>) {
     println!("Testing function call.");
 }

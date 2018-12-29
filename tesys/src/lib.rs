@@ -30,3 +30,5 @@ pub use crate::pluginhost::PluginHost;
 
 mod pluginmanager;
 pub use crate::pluginmanager::PluginManager;
+
+pub mod codegen;
