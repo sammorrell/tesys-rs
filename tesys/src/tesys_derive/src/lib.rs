@@ -7,6 +7,7 @@ extern crate quote;
 
 mod loggable;
 mod routable;
+mod attribute;
 
 // Provides the derive for the loggable class.
 #[proc_macro_derive(Loggable)]
@@ -25,4 +26,10 @@ pub fn routable_derive(input: proc_macro::TokenStream) -> proc_macro::TokenStrea
 
     // Build the trait implementation
     routable::impl_routable(&ast)
+}
+
+#[proc_macro_attribute]
+pub fn handle(args: proc_macro::TokenStream, input: proc_macro::TokenStream) -> proc_macro::TokenStream {
+	println!("Handler: {}", args);
+    input
 }
