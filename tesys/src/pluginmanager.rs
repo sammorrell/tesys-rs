@@ -31,11 +31,7 @@ impl PluginManager {
         match self.resolve_plugin_lib(id) {
             Ok(path) => match PluginHost::load(path.to_string()) {
                 Ok(mut pgh) => {
-                    // THIS IS TESTING TO CODE TO MAKRE SURE WE CAN ACCESS THE PLUGIN METHODS - IT SHOULD BE REMOVED. 
-                    match &mut pgh.pg {
-                        None => (),
-                        Some(pgl) => pgl.test(),
-                    }
+                    pgh.test(); /// More testing code. 
                     self.hosts.push(pgh);
                     Ok(())
                 },
