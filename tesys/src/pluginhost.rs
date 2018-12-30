@@ -4,9 +4,8 @@ extern crate libloading;
 use self::libloading::{Library, Symbol};
 
 use crate::loggable;
-use crate::Plugin;
+use crate::{Plugin, Message, MessageHandler, Exchange};
 use crate::plugin;
-use crate::Exchange;
 
 pub enum RunMode {
 	Thread,
@@ -21,6 +20,22 @@ pub struct PluginHost {
 	run_mode: RunMode,
 	do_run: bool,
 	library: Option<Library>,
+}
+
+impl MessageHandler for PluginHost {
+	fn can_handle(&self, handle: String) -> bool {
+		match &self.pg {
+			Some(pg) => pg.can_handle(handle),
+			None => false
+		}
+    }
+
+    fn handle(&mut self, handle: String, m: Message) -> Option<Message> {
+        match &mut self.pg {
+			Some(pg) => pg.handle(handle, m),
+			None => None
+		}
+    }
 }
 
 impl PluginHost {

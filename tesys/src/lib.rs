@@ -9,6 +9,15 @@ pub use crate::loggable::Loggable;
 
 pub extern crate tesys_astrometry as astrometry;
 
+mod route;
+pub use crate::route::Route;
+
+mod message;
+pub use crate::message::Message;
+
+mod message_handler;
+pub use crate::message_handler::MessageHandler;
+
 mod peer;
 pub use crate::peer::Peer;
 

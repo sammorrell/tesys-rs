@@ -1,6 +1,6 @@
 use std::any::Any;
 use std::fmt::Debug;
-pub use crate::Exchange;
+pub use crate::{Exchange,MessageHandler};
 
 pub const PLUGIN_CREATE_SYMBOL: &[u8] = b"_create_plugin";
 pub const PLUGIN_DESTROY_SYMBOL: &[u8] = b"_destroy_plugin";
@@ -56,7 +56,7 @@ macro_rules! tesys_plugin_new {
 	}
 }
 
-pub trait Plugin: Any + Send + Sync + Debug {
+pub trait Plugin: Any + Send + Sync + Debug + MessageHandler {
     fn new() -> Self
     where
         Self: Sized;

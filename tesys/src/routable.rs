@@ -1,3 +1,3 @@
-pub trait Routable: Sized {
+pub trait Routable {
 	fn recv(&mut self);
 }
