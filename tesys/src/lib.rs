@@ -43,4 +43,6 @@ pub use crate::pluginhost::PluginHost;
 mod pluginmanager;
 pub use crate::pluginmanager::PluginManager;
 
+// Forwarding modules for the crate
 pub mod codegen;
+pub mod timing;
