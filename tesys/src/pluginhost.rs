@@ -1,11 +1,17 @@
 use std::{thread, time};
+use std::sync::mpsc::{Sender,Receiver};
+use std::sync::{Arc,Mutex};
+use std::borrow::BorrowMut;
 
 extern crate libloading;
 use self::libloading::{Library, Symbol};
 
 use crate::loggable;
-use crate::{Plugin, Message, MessageHandler, Exchange};
+use crate::Loggable;
+use crate::{Plugin, Message, CanHandleMessages, Routable};
 use crate::plugin;
+use crate::router::{Inlet, Outlet};
+use crate::timing::LoopTimer;
 
 pub enum RunMode {
 	Thread,
@@ -15,63 +21,69 @@ pub enum RunMode {
 const DEFAULT_RUN_MODE: RunMode = RunMode::Thread;
 
 pub struct PluginHost {
-	pub pg: Option<Box<Plugin>>,
-	ex: Exchange,
-	run_mode: RunMode,
-	do_run: bool,
 	library: Option<Library>,
+	inner: Arc<Mutex<PluginHostContext>>,
+	inlet: Option<Inlet>,
+	outlet: Option<Outlet>,
 }
 
-impl MessageHandler for PluginHost {
+impl CanHandleMessages for PluginHost {
 	fn can_handle(&self, handle: String) -> bool {
-		match &self.pg {
-			Some(pg) => pg.can_handle(handle),
-			None => false
-		}
+		let mut loc_self = self.inner.lock().unwrap();
+		loc_self.can_handle(handle)
     }
 
     fn handle(&mut self, handle: String, m: Message) -> Option<Message> {
-        match &mut self.pg {
-			Some(pg) => pg.handle(handle, m),
-			None => None
-		}
+        let mut loc_self = self.inner.lock().unwrap();
+		loc_self.handle(handle, m)
     }
+}
+
+impl Routable for PluginHost {
+	fn set_inlet(&mut self, inlet: Inlet) {
+		self.inlet = Some(inlet);
+	}
+
+	fn set_outlet(&mut self, outlet: Outlet) {
+		self.outlet = Some(outlet);
+	}
+
+	fn get_handle(&self) -> String {
+		"plugin".to_string()
+	}
 }
 
 impl PluginHost {
 
 	pub fn new() -> PluginHost {
 		PluginHost {
-			pg: None,
-			ex: Exchange::new(),
-			run_mode: DEFAULT_RUN_MODE,
-			do_run: false,
-			library: None
+			library: None,
+			inner: Arc::new(Mutex::new(PluginHostContext::new())),
+			inlet: None,
+			outlet: None,
 		}
 	}
 
 	pub fn set_run_mode(&mut self, rm: RunMode) {
-		self.run_mode = rm;
+		let mut loc_self = self.inner.lock().unwrap();
+		loc_self.set_run_mode(rm);
 	}
 
-	pub fn set_plugin(&mut self, pg: Box<Plugin>) {
-		self.pg = Some(pg);
-	}
-
-	pub fn init(&self) {
+	pub fn init(&mut self) {
 
 	}
 
 	pub fn start(&mut self) {
-		self.do_run = true;
-	}
-
-	pub fn main(&self) {
-
+		let local_self = self.inner.clone();
+		thread::spawn(move || {
+			let mut lck = local_self.lock().unwrap();
+			lck.main();
+		});
 	}
 
 	pub fn test(&mut self) {
-		match &mut self.pg {
+		let mut loc_self = self.inner.lock().unwrap();
+		match &mut loc_self.pg {
 			None => (),
 			Some(p) => p.test(),
 		};
@@ -103,7 +115,8 @@ impl PluginHost {
 	                    Ok(sym) => {
 	                        let func = sym as Symbol<plugin::PluginCreate>;
 	                        let pg_raw = func();
-	                        self.pg = Some(Box::from_raw(pg_raw));
+							let mut loc_self = self.inner.lock().unwrap();
+	                       	loc_self.set_plugin(Box::from_raw(pg_raw));
 	                        Ok(())
 	                    }
 	                    Err(_e) => Err(format!("Unable to load _create symbol: {}", _e).to_string()),
@@ -112,5 +125,63 @@ impl PluginHost {
             }
             Err(_e) => Err(format!("Unable to load library file: {}", _e).to_string()),
         }
+    }
+}
+
+#[derive(Loggable)]
+struct PluginHostContext {
+	run_mode: RunMode,
+	pub pg: Option<Box<Plugin>>,
+	do_run: bool,	
+	inlet: Option<Mutex<Inlet>>,
+	outlet: Option<Mutex<Outlet>>,
+}
+
+impl PluginHostContext{
+
+	pub fn new() -> PluginHostContext {
+		PluginHostContext {
+			run_mode: DEFAULT_RUN_MODE,
+			pg: None,
+			do_run: false,
+			inlet: None,
+			outlet: None,
+		}
+	}
+
+	pub fn main(&mut self) {
+		let mut lt = LoopTimer::new(60); // Target polling rate of 60 iter / sec. 
+		let do_run = true;
+		
+		tesys_log!(Self, "Launched thread.");
+
+		while do_run {
+            lt.start();
+            lt.end();
+        }
+	}
+
+	pub fn set_run_mode(&mut self, rm: RunMode) {
+		self.run_mode = rm;
+	}
+
+	pub fn set_plugin(&mut self, pg: Box<Plugin>) {
+		self.pg = Some(pg);
+	}
+}
+
+impl CanHandleMessages for PluginHostContext {
+	fn can_handle(&self, handle: String) -> bool {
+		match &self.pg {
+			Some(pg) => pg.can_handle(handle),
+			None => false
+		}
+    }
+
+    fn handle(&mut self, handle: String, m: Message) -> Option<Message> {
+        match &mut self.pg {
+			Some(pg) => pg.handle(handle, m),
+			None => None
+		}
     }
 }

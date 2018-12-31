@@ -4,7 +4,7 @@ use crate::loggable;
 use crate::loggable::Loggable;
 use crate::Router;
 use crate::PluginHost;
-use crate::MessageHandler;
+use crate::CanHandleMessages;
 
 #[derive(Loggable)]
 pub struct PluginManager {
@@ -33,7 +33,7 @@ impl PluginManager {
             Ok(path) => match PluginHost::load(path.to_string()) {
                 Ok(mut pgh) => {
                     pgh.test(); /// More testing code. 
-                    println!("{}", pgh.can_handle("test".to_string()));
+                    pgh.start();
                     self.hosts.push(pgh);
                     Ok(())
                 },
