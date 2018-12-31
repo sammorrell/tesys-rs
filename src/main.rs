@@ -40,5 +40,7 @@ fn main() -> Result<(), ()> {
     tesys::loggable::log("Initialising Peer...");
     let mut _p = Peer::new();
     _p.load_plugins();
+    _p.run();
+    
     Ok(())
 }
