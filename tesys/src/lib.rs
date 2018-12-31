@@ -12,6 +12,9 @@ pub extern crate tesys_astrometry as astrometry;
 mod route;
 pub use crate::route::Route;
 
+mod payload;
+pub use crate::payload::Payload;
+
 mod message;
 pub use crate::message::Message;
 
