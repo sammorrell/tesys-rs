@@ -1,16 +1,22 @@
+use std::{thread, time};
+
 use crate::loggable;
 use crate::loggable::Loggable;
 use crate::PluginManager;
+use crate::timing::LoopTimer;
 
 #[derive(Loggable)]
 pub struct Peer {
     plugin_manager: PluginManager,
+
+    do_run: bool,
 }
 
 impl Peer {
     pub fn new() -> Peer {
         Peer {
             plugin_manager: PluginManager::new(),
+            do_run: false,
         }
     }
 
@@ -22,5 +28,15 @@ impl Peer {
             Ok(_e) => (),
             Err(_e) => println!("Unable to load plugin: {}", _e),
         };
+    }
+
+    pub fn run(&mut self) {
+        self.do_run = true;
+        let mut lt = LoopTimer::new(60); // Target polling rate of 60 iter / sec. 
+
+        while self.do_run {
+            lt.start();
+            lt.end();
+        }
     }
 }
