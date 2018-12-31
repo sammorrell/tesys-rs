@@ -1,6 +1,6 @@
 use std::any::Any;
 use std::fmt::Debug;
-pub use crate::{Exchange,MessageHandler};
+pub use crate::{Exchange,CanHandleMessages};
 
 pub const PLUGIN_CREATE_SYMBOL: &[u8] = b"_create_plugin";
 pub const PLUGIN_DESTROY_SYMBOL: &[u8] = b"_destroy_plugin";
@@ -34,7 +34,7 @@ macro_rules! tesys_plugin_destroy {
 #[macro_export]
 macro_rules! tesys_plugin {
 	($struct:ident { $( $field:ident:$type:ty, )* }) => {
-		#[derive(Debug,Clone,Loggable,Routable)]
+		#[derive(Debug,Clone,Loggable)]
         pub struct $struct {
             $(
                 $field: $type,

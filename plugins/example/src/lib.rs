@@ -6,7 +6,7 @@ use tesys::Loggable;
 use tesys::astrometry::SkyCoordinate;
 use tesys::astrometry::frames::ICRS;
 use tesys::loggable;
-use tesys::{Plugin,Message,MessageHandler,Routable};
+use tesys::{Plugin,Message,CanHandleMessages,Routable};
 use tesys::codegen::*;
 
 // We call into the macros to write the extern C functions
@@ -37,7 +37,7 @@ impl Plugin for ExamplePlugin {
     }
 }
 
-impl MessageHandler for ExamplePlugin {
+impl CanHandleMessages for ExamplePlugin {
     fn can_handle(&self, handle: String) -> bool {
         true
     }
