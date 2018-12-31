@@ -1,3 +1,8 @@
+use crate::Message;
+use crate::router::{Inlet,Outlet};
+
 pub trait Routable {
-	fn recv(&mut self);
+	fn set_inlet(&mut self, inlet: Inlet);
+	fn set_outlet(&mut self, inlet: Outlet);
+	fn get_handle(&self) -> String;
 }
