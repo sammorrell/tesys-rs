@@ -35,6 +35,14 @@ impl Plugin for ExamplePlugin {
         self.coord.coords[1] += 86.3;
         tesys_warn!(Self, "{}", self.coord);
     }
+
+    fn init(&mut self) {
+
+    }
+
+    fn term(&mut self) {
+
+    }
 }
 
 impl CanHandleMessages for ExamplePlugin {

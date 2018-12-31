@@ -56,10 +56,15 @@ macro_rules! tesys_plugin_new {
 	}
 }
 
-pub trait Plugin: Any + Send + Sync + Debug + MessageHandler {
+pub trait Plugin: Any + Send + Sync + Debug + CanHandleMessages {
     fn new() -> Self
     where
         Self: Sized;
     fn test(self: &mut Self);
+
+	/// Initialises your plugin so that it can begin running. 
+	fn init(&mut self); 
+	/// Terminates your plugin so it can be shut down. 
+	fn term(&mut self);
 }
 
