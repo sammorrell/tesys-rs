@@ -11,3 +11,4 @@ crate-type = ["lib", "dylib"]
 [dependencies]
 tesys = { path = "../../tesys/"}
 tesys_derive = { path = "../../tesys/src/tesys_derive"}
+uuid = { version="~0.7", features = ["v4"] }

@@ -1,3 +1,6 @@
+extern crate uuid;
+use uuid::Uuid;
+
 #[macro_use]
 extern crate tesys;
 #[macro_use]
@@ -7,7 +10,8 @@ use tesys::astrometry::SkyCoordinate;
 use tesys::codegen::*;
 use tesys::loggable;
 use tesys::Loggable;
-use tesys::{CanHandleMessages, Message, Plugin, Routable};
+use tesys::net::{CanHandleMessages, Message, Routable};
+use tesys::Plugin;
 
 // We call into the macros to write the extern C functions
 // which allow us to easily create and destroy our Rust
@@ -34,6 +38,9 @@ impl Plugin for ExamplePlugin {
         self.coord.coords[0] += 137.6;
         self.coord.coords[1] += 86.3;
         tesys_warn!(Self, "{}", self.coord);
+
+        let mes = Message::blank();
+        tesys_log!(Self, "Conversation: {}", mes.get_conversation_id().to_hyphenated());
     }
 
     fn init(&mut self) {}
