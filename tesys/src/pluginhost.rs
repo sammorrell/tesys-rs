@@ -147,11 +147,10 @@ impl PluginHostContext {
 
     pub fn main(&mut self) {
         let mut lt = LoopTimer::new(60); // Target polling rate of 60 iter / sec.
-        let do_run = true;
 
         tesys_log!(Self, "Launched thread.");
 
-        while do_run {
+        while self.do_run {
             lt.start();
             lt.end();
         }
