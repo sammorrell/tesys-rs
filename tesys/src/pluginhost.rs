@@ -41,15 +41,18 @@ impl CanHandleMessages for PluginHost {
 
 impl Routable for PluginHost {
 	fn set_inlet(&mut self, inlet: Inlet) {
-		self.inlet = Some(inlet);
+		let mut loc_self = self.inner.lock().unwrap();
+		loc_self.set_inlet(inlet);
 	}
 
 	fn set_outlet(&mut self, outlet: Outlet) {
-		self.outlet = Some(outlet);
+		let mut loc_self = self.inner.lock().unwrap();
+		loc_self.set_outlet(outlet);
 	}
 
 	fn get_handle(&self) -> String {
-		"plugin".to_string()
+		let mut loc_self = self.inner.lock().unwrap();
+		loc_self.get_handle()
 	}
 }
 
@@ -184,4 +187,18 @@ impl CanHandleMessages for PluginHostContext {
 			None => None
 		}
     }
+}
+
+impl Routable for PluginHostContext {
+	fn set_inlet(&mut self, inlet: Inlet) {
+		self.inlet = Some(Mutex::new(inlet));
+	}
+
+	fn set_outlet(&mut self, outlet: Outlet) {
+		self.outlet = Some(Mutex::new(outlet));
+	}
+
+	fn get_handle(&self) -> String {
+		"plugin".to_string()
+	}
 }
