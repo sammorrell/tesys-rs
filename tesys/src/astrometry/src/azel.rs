@@ -17,10 +17,6 @@ impl AzEl {
 
 impl fmt::Display for AzEl {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "AZ = {:0>2}, EL = {:0>2}",
-            self.az, self.el
-        )
+        write!(f, "AZ = {:0>2}, EL = {:0>2}", self.az, self.el)
     }
 }

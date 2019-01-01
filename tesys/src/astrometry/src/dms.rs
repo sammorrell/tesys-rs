@@ -1,5 +1,5 @@
-use std::fmt;
 use crate::DEG_PER_RAD;
+use std::fmt;
 
 pub struct DMS {
     pub d: i8,

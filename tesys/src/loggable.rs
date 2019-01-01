@@ -30,7 +30,6 @@ pub fn warn(str: &str) {
     );
 }
 
-
 pub fn err(str: &str) {
     let _mtx = LOGGABLE_MTX.lock().unwrap();
     println!(
@@ -43,7 +42,12 @@ pub fn log_labelled(str: &str, com: &str) {
     let _mtx = LOGGABLE_MTX.lock().unwrap();
     println!(
         "{}",
-        format!("[ {} : {} ] {}", com.white().bold(), "Info".magenta().bold(), str.green())
+        format!(
+            "[ {} : {} ] {}",
+            com.white().bold(),
+            "Info".magenta().bold(),
+            str.green()
+        )
     );
 }
 
@@ -51,7 +55,12 @@ pub fn warn_labelled(str: &str, com: &str) {
     let _mtx = LOGGABLE_MTX.lock().unwrap();
     println!(
         "{}",
-        format!("[ {} : {} ] {}", com.white().bold(), "Warning".magenta().bold(), str.yellow())
+        format!(
+            "[ {} : {} ] {}",
+            com.white().bold(),
+            "Warning".magenta().bold(),
+            str.yellow()
+        )
     );
 }
 
@@ -59,7 +68,12 @@ pub fn err_labelled(str: &str, com: &str) {
     let _mtx = LOGGABLE_MTX.lock().unwrap();
     println!(
         "{}",
-        format!("[ {} : {} ] {}", com.white().bold(), "Error".magenta().bold(), str.red())
+        format!(
+            "[ {} : {} ] {}",
+            com.white().bold(),
+            "Error".magenta().bold(),
+            str.red()
+        )
     );
 }
 
@@ -92,4 +106,3 @@ macro_rules! tesys_err {
         loggable::err(&format!( $ ( $ arg ) * ));
     };
 }
-

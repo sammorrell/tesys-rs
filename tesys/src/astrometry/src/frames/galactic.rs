@@ -1,15 +1,10 @@
 use crate::frame::Frame;
 
-#[derive(Clone,Debug)]
-pub struct Galactic {
-	
-}
+#[derive(Clone, Debug)]
+pub struct Galactic {}
 
 impl Frame for Galactic {
-
-	fn new() -> Self {
-		Galactic {
-			
-		}
-	}
+    fn new() -> Self {
+        Galactic {}
+    }
 }

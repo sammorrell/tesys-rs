@@ -8,7 +8,7 @@ pub fn impl_routable(ast: &syn::DeriveInput) -> TokenStream {
     let name = &ast.ident;
     let gen = quote! {
         impl Routable for #name {
-            
+
         }
     };
     gen.into()

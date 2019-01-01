@@ -2,8 +2,8 @@ use std::{thread, time};
 
 use crate::loggable;
 use crate::loggable::Loggable;
-use crate::PluginManager;
 use crate::timing::LoopTimer;
+use crate::PluginManager;
 
 #[derive(Loggable)]
 pub struct Peer {
@@ -21,7 +21,8 @@ impl Peer {
     }
 
     pub fn load_plugins(&mut self) {
-        self.plugin_manager.add_plugin_search_directory("./target/debug/");
+        self.plugin_manager
+            .add_plugin_search_directory("./target/debug/");
         let pg_res = self.plugin_manager.load("tesys_example_plugin");
 
         match pg_res {
@@ -32,7 +33,7 @@ impl Peer {
 
     pub fn run(&mut self) {
         self.do_run = true;
-        let mut lt = LoopTimer::new(60); // Target polling rate of 60 iter / sec. 
+        let mut lt = LoopTimer::new(60); // Target polling rate of 60 iter / sec.
 
         while self.do_run {
             lt.start();

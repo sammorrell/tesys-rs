@@ -19,7 +19,7 @@ mod message;
 pub use crate::message::Message;
 
 mod message_handler;
-pub use crate::message_handler::{MessageHandler,CanHandleMessages};
+pub use crate::message_handler::{CanHandleMessages, MessageHandler};
 
 mod peer;
 pub use crate::peer::Peer;

@@ -1,5 +1,5 @@
+use std::time::{Duration, Instant};
 use std::{thread, time};
-use std::time::{Instant,Duration};
 
 #[derive(Debug)]
 pub struct LoopTimer {
@@ -12,7 +12,7 @@ pub struct LoopTimer {
 
 impl LoopTimer {
     pub fn new(loop_rate: u64) -> LoopTimer {
-        // Lets begin by having a duration. 
+        // Lets begin by having a duration.
         let dur_ms = ((1.0 / loop_rate as f64) * 1000.0).ceil() as u64;
         let target_loop_time = Duration::from_millis(dur_ms);
 
@@ -20,19 +20,19 @@ impl LoopTimer {
             target_loop_time: target_loop_time,
             loop_start: Instant::now(),
             loop_end: Instant::now(),
-            loop_delay: Duration::new(0,0),
+            loop_delay: Duration::new(0, 0),
             delay_loop: true,
         }
     }
 
-    /// Sets the target rate of the loop in iterations per second. 
+    /// Sets the target rate of the loop in iterations per second.
     pub fn set_loop_rate(&mut self, loop_rate: u64) {
         self.target_loop_time = Duration::from_micros(1000_000 / loop_rate);
     }
 
-    /// Returns the target loop rate in iterations per second. 
+    /// Returns the target loop rate in iterations per second.
     pub fn get_target_loop_rate(&self) -> u64 {
-        let dur = self.target_loop_time.as_secs() + (self.target_loop_time.subsec_millis()) as u64; 
+        let dur = self.target_loop_time.as_secs() + (self.target_loop_time.subsec_millis()) as u64;
         (1 / dur) as u64
     }
 
@@ -52,11 +52,13 @@ impl LoopTimer {
         // We get the end time of the loop
         self.loop_end = Instant::now();
 
-        // Calculate the time the loop has taken so far. 
+        // Calculate the time the loop has taken so far.
         let dur = self.get_loop_time();
         self.loop_delay = self.target_loop_time - dur;
 
         // Delay the loop if required of us
-        if self.delay_loop { thread::sleep(self.loop_delay); }
+        if self.delay_loop {
+            thread::sleep(self.loop_delay);
+        }
     }
 }

@@ -1,6 +1,6 @@
+pub use crate::{CanHandleMessages, Exchange};
 use std::any::Any;
 use std::fmt::Debug;
-pub use crate::{Exchange,CanHandleMessages};
 
 pub const PLUGIN_CREATE_SYMBOL: &[u8] = b"_create_plugin";
 pub const PLUGIN_DESTROY_SYMBOL: &[u8] = b"_destroy_plugin";
@@ -10,24 +10,24 @@ pub type PluginDestroy = unsafe fn(*mut Plugin);
 
 #[macro_export]
 macro_rules! tesys_plugin_create {
-	($struct_name: ident) => (
-		#[no_mangle]
-		pub extern "C" fn _create_plugin() -> *mut Plugin {
-		    let obj = $struct_name::new();
-		    let boxed: Box<$struct_name> = Box::new(obj);
-		    Box::into_raw(boxed)
-		}
-	)
+    ($struct_name: ident) => {
+        #[no_mangle]
+        pub extern "C" fn _create_plugin() -> *mut Plugin {
+            let obj = $struct_name::new();
+            let boxed: Box<$struct_name> = Box::new(obj);
+            Box::into_raw(boxed)
+        }
+    };
 }
 
 #[macro_export]
 macro_rules! tesys_plugin_destroy {
-	($struct_name: ident) => (
-		#[no_mangle]
-		pub extern "C" fn _delete_plugin(p: *mut Plugin) {
-		    drop(p);
-		}
-	)
+    ($struct_name: ident) => {
+        #[no_mangle]
+        pub extern "C" fn _delete_plugin(p: *mut Plugin) {
+            drop(p);
+        }
+    };
 }
 
 // Inspired by: https://stackoverflow.com/questions/45232838/is-it-possible-to-automatically-define-fields-of-a-struct
@@ -62,9 +62,8 @@ pub trait Plugin: Any + Send + Sync + Debug + CanHandleMessages {
         Self: Sized;
     fn test(self: &mut Self);
 
-	/// Initialises your plugin so that it can begin running. 
-	fn init(&mut self); 
-	/// Terminates your plugin so it can be shut down. 
-	fn term(&mut self);
+    /// Initialises your plugin so that it can begin running.
+    fn init(&mut self);
+    /// Terminates your plugin so it can be shut down.
+    fn term(&mut self);
 }
-

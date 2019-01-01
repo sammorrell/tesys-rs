@@ -5,9 +5,9 @@ extern crate syn;
 #[macro_use]
 extern crate quote;
 
+mod attribute;
 mod loggable;
 mod routable;
-mod attribute;
 
 // Provides the derive for the loggable class.
 #[proc_macro_derive(Loggable)]
@@ -22,14 +22,17 @@ pub fn loggable_derive(input: proc_macro::TokenStream) -> proc_macro::TokenStrea
 
 #[proc_macro_derive(Routable)]
 pub fn routable_derive(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
-	let ast = syn::parse(input).unwrap();
+    let ast = syn::parse(input).unwrap();
 
     // Build the trait implementation
     routable::impl_routable(&ast)
 }
 
 #[proc_macro_attribute]
-pub fn handle(args: proc_macro::TokenStream, input: proc_macro::TokenStream) -> proc_macro::TokenStream {
-	println!("Handler: {}", args);
+pub fn handle(
+    args: proc_macro::TokenStream,
+    input: proc_macro::TokenStream,
+) -> proc_macro::TokenStream {
+    println!("Handler: {}", args);
     input
 }

@@ -2,16 +2,16 @@
 extern crate tesys;
 #[macro_use]
 extern crate tesys_derive;
-use tesys::Loggable;
-use tesys::astrometry::SkyCoordinate;
 use tesys::astrometry::frames::ICRS;
-use tesys::loggable;
-use tesys::{Plugin,Message,CanHandleMessages,Routable};
+use tesys::astrometry::SkyCoordinate;
 use tesys::codegen::*;
+use tesys::loggable;
+use tesys::Loggable;
+use tesys::{CanHandleMessages, Message, Plugin, Routable};
 
 // We call into the macros to write the extern C functions
 // which allow us to easily create and destroy our Rust
-// plugin struct. 
+// plugin struct.
 tesys_plugin_create!(ExamplePlugin);
 tesys_plugin_destroy!(ExamplePlugin);
 
@@ -36,13 +36,9 @@ impl Plugin for ExamplePlugin {
         tesys_warn!(Self, "{}", self.coord);
     }
 
-    fn init(&mut self) {
+    fn init(&mut self) {}
 
-    }
-
-    fn term(&mut self) {
-
-    }
+    fn term(&mut self) {}
 }
 
 impl CanHandleMessages for ExamplePlugin {
@@ -55,13 +51,13 @@ impl CanHandleMessages for ExamplePlugin {
     }
 }
 
-// Start of the handler setup for plugins. 
-static test_handler_handler: StaticHandlerInfo<ExamplePlugin>  = StaticHandlerInfo {
+// Start of the handler setup for plugins.
+static test_handler_handler: StaticHandlerInfo<ExamplePlugin> = StaticHandlerInfo {
     name: "test_handler",
     handler: test_handler,
 };
 
-// Experimenting with the handle attribute 
+// Experimenting with the handle attribute
 #[handle("test", return=String)]
 fn test_handler(_pg: Box<ExamplePlugin>) {
     println!("Testing function call.");

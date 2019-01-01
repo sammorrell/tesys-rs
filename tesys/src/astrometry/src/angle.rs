@@ -3,19 +3,19 @@ use crate::hms;
 use std::clone::Clone;
 use std::fmt;
 
+use std::cmp::Ordering;
 use std::ops::Add;
 use std::ops::AddAssign;
-use std::ops::Sub;
-use std::ops::Rem;
-use std::ops::Mul;
 use std::ops::Div;
+use std::ops::Mul;
+use std::ops::Rem;
+use std::ops::Sub;
 use std::ops::SubAssign;
-use std::cmp::Ordering;
 
-use crate::DEG_PER_RAD;
-use crate::MAS_PER_RAD;
 use crate::ARCSEC_PER_DEG;
+use crate::DEG_PER_RAD;
 use crate::MAS_PER_DEG;
+use crate::MAS_PER_RAD;
 
 pub struct Angle {
     _angle: f64, // Measured in radians
@@ -30,12 +30,12 @@ impl Angle {
     }
 
     pub fn new_from_arcsec(val: f64) -> Angle {
-        //! Creates a new instance of the object given an angle in arcseconds. 
+        //! Creates a new instance of the object given an angle in arcseconds.
         Angle::new(val / ARCSEC_PER_DEG)
     }
 
     pub fn new_from_mas(val: f64) -> Angle {
-        //! Creates a new instance of the object given an angle in arcseconds. 
+        //! Creates a new instance of the object given an angle in arcseconds.
         Angle::new(val / (MAS_PER_DEG))
     }
 
@@ -314,7 +314,7 @@ impl Clone for Angle {
     }
 }
 
-impl Eq for Angle {  }
+impl Eq for Angle {}
 
 impl PartialEq for Angle {
     fn eq(&self, other: &Angle) -> bool {

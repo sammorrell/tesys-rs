@@ -1,9 +1,7 @@
-use std::fmt::Debug;
 use std::any::Any;
+use std::fmt::Debug;
 
-pub trait Payload: Any + Send + Sync + Debug + PayloadClone {
-	
-}
+pub trait Payload: Any + Send + Sync + Debug + PayloadClone {}
 
 pub trait PayloadClone {
     fn clone_payload(&self) -> Box<Payload>;
@@ -21,5 +19,5 @@ where
 impl Clone for Box<Payload> {
     fn clone(&self) -> Self {
         self.clone_payload()
-    } 
+    }
 }
