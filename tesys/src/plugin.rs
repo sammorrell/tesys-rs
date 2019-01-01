@@ -1,4 +1,4 @@
-pub use crate::{CanHandleMessages, Exchange};
+pub use crate::net::{CanHandleMessages, Exchange};
 use std::any::Any;
 use std::fmt::Debug;
 

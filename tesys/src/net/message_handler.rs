@@ -1,4 +1,4 @@
-use crate::Message;
+use crate::net::Message;
 use std::any::Any;
 
 pub trait CanHandleMessages: Any {

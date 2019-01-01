@@ -1,5 +1,5 @@
-use crate::router::{Inlet, Outlet};
-use crate::Message;
+use crate::net::router::{Inlet, Outlet};
+use crate::net::Message;
 
 pub trait Routable {
     fn set_inlet(&mut self, inlet: Inlet);

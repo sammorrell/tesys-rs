@@ -16,3 +16,5 @@ colored = "1.6.1"
 libloading = "0.5.0"
 error-chain = "*"
 slotmap = "0.3.0"
+uuid = { version="~0.7", features = ["v4"] }
+chrono = "*"

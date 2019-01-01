@@ -3,7 +3,7 @@ extern crate slotmap;
 use std::collections::{HashMap, VecDeque};
 use std::sync::mpsc::{channel, Receiver, Sender};
 
-use crate::{Message, Routable};
+use crate::net::{Message, Routable};
 
 pub type Inlet = Receiver<Message>;
 pub type Outlet = Sender<Message>;

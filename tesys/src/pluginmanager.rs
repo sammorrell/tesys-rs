@@ -2,9 +2,8 @@ use std::path::Path;
 
 use crate::loggable;
 use crate::loggable::Loggable;
-use crate::CanHandleMessages;
 use crate::PluginHost;
-use crate::Router;
+use crate::net::Router;
 
 #[derive(Loggable)]
 pub struct PluginManager {
@@ -33,7 +32,7 @@ impl PluginManager {
             Ok(path) => match PluginHost::load(path.to_string()) {
                 Ok(mut pgh) => {
                     pgh.test();
-                    /// More testing code.
+                    // More testing code.
                     pgh.start();
                     self.hosts.push(pgh);
                     Ok(())

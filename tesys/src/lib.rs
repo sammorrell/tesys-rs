@@ -9,29 +9,8 @@ pub use crate::loggable::Loggable;
 
 pub extern crate tesys_astrometry as astrometry;
 
-mod route;
-pub use crate::route::Route;
-
-mod payload;
-pub use crate::payload::Payload;
-
-mod message;
-pub use crate::message::Message;
-
-mod message_handler;
-pub use crate::message_handler::{CanHandleMessages, MessageHandler};
-
 mod peer;
 pub use crate::peer::Peer;
-
-mod router;
-pub use crate::router::Router;
-
-mod routable;
-pub use crate::routable::Routable;
-
-mod exchange;
-pub use crate::exchange::Exchange;
 
 #[macro_use]
 pub mod plugin;
@@ -44,5 +23,6 @@ mod pluginmanager;
 pub use crate::pluginmanager::PluginManager;
 
 // Forwarding modules for the crate
+pub mod net;
 pub mod codegen;
 pub mod timing;

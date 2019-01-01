@@ -8,10 +8,11 @@ use self::libloading::{Library, Symbol};
 
 use crate::loggable;
 use crate::plugin;
-use crate::router::{Inlet, Outlet};
+use crate::net::router::{Inlet, Outlet};
 use crate::timing::LoopTimer;
 use crate::Loggable;
-use crate::{CanHandleMessages, Message, Plugin, Routable};
+use crate::net::{CanHandleMessages, Message, Routable};
+use crate::Plugin;
 
 pub enum RunMode {
     Thread,

@@ -1,4 +1,4 @@
-use crate::{Payload, Route};
+use crate::net::{Payload, Route};
 
 #[derive(Clone, Debug)]
 pub struct Message {
