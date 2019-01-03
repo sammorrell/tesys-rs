@@ -9,6 +9,7 @@ use tesys::astrometry::frame::CanTransformTo;
 use tesys::astrometry::frames::{FK5, ICRS};
 use tesys::astrometry::{Epoch, Frame, Location, ProperMotion, SkyCoordinate};
 use tesys::Peer;
+use tesys::net::{Message,Payload};
 
 fn main() -> Result<(), ()> {
     // Let's first check and see if we have a config file as a command line argument
@@ -44,6 +45,10 @@ fn main() -> Result<(), ()> {
         get_sidereal_time(dt.with_timezone(&Utc), loc.clone()).to_hms()
     ));
     tesys::loggable::log(&format!("{}", coord.to_sky_position(dt, loc.clone())));
+
+    // Testing message
+    let m = Message::new().with_payload(coord.clone()).finish();
+    println!("{:?}", m);
 
     tesys::loggable::log("Initialising Peer...");
     let mut _p = Peer::new();
