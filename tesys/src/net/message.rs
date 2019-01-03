@@ -8,7 +8,7 @@ pub struct Message {
     conversation_id: Uuid,
     to: Route,
     from: Route,
-    payload: Option<Box<Payload>>,
+    pub payload: Option<Box<Payload>>,
 }
 
 impl Message {
@@ -62,7 +62,7 @@ impl MessageBuilder {
 
     pub fn with_payload<T: Payload>(self, pl: T) -> MessageBuilder {
         let mut ret = self.clone();
-        ret._m.payload = Some(Box::new(pl));
+        ret._m.payload = Some(T::pack(pl));
         ret
     }
 
