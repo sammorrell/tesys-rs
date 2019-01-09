@@ -48,7 +48,9 @@ fn main() -> Result<(), ()> {
 
     // Testing message
     let m = Message::new().with_payload(coord.clone()).finish();
-    println!("{:?}", m);
+    let dat: SkyCoordinate<ICRS> = SkyCoordinate::<ICRS>::unpack(m.get_payload().unwrap()).unwrap();
+    println!("{:?}", dat);
+
 
     tesys::loggable::log("Initialising Peer...");
     let mut _p = Peer::new();
