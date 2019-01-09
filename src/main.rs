@@ -1,5 +1,7 @@
 extern crate chrono;
+#[macro_use]
 extern crate tesys;
+pub use tesys::loggable;
 
 use chrono::prelude::*;
 use chrono::Local;
@@ -9,7 +11,7 @@ use tesys::astrometry::frame::CanTransformTo;
 use tesys::astrometry::frames::{FK5, ICRS};
 use tesys::astrometry::{Epoch, Frame, Location, ProperMotion, SkyCoordinate};
 use tesys::Peer;
-use tesys::net::{Message,Payload};
+use tesys::net::Message;
 
 fn main() -> Result<(), ()> {
     // Let's first check and see if we have a config file as a command line argument
@@ -48,8 +50,11 @@ fn main() -> Result<(), ()> {
 
     // Testing message
     let m = Message::new().with_payload(coord.clone()).finish();
-    let dat: SkyCoordinate<ICRS> = SkyCoordinate::<ICRS>::unpack(m.get_payload().unwrap()).unwrap();
-    println!("{:?}", dat);
+    let dat: SkyCoordinate<ICRS> = match m.get_payload() {
+        Ok(p) => p,
+        Err(_) => SkyCoordinate::<ICRS>::new(0., 0.),
+    };
+    tesys_warn!("{:?}", dat);
 
 
     tesys::loggable::log("Initialising Peer...");
