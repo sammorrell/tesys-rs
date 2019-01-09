@@ -29,8 +29,12 @@ impl Message {
         self.conversation_id.clone()
     }
 
-    pub fn get_payload(&self) -> Option<Box<dyn Payload>> {
+    pub fn get_payload_obj(&self) -> Option<Box<dyn Payload>> {
         self.payload.clone()
+    }
+
+    pub fn get_payload<T: Clone + Payload + Sync + Send + 'static>(&self) -> Result<T, ()> {
+        T::unpack(self.get_payload_obj().unwrap())
     }
 }
 
