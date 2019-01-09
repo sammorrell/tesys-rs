@@ -1,18 +1,26 @@
 use std::any::Any;
 use std::fmt::Debug;
 
-pub trait Payload: Any + Send + Sync + Debug + PayloadClone {
-    fn pack<T>(obj: T) -> Box<T> where Self: Sized, T: Payload;
-    fn unpack<T>(pl: Box<T>) -> Result<&'static mut T, ()> where Self: Sized, T: Payload;
+pub trait Payload: Any + Send + Debug + PayloadClone {
+    fn pack<T>(obj: T) -> Box<T> where Self: Sized, T: Payload + Clone;
+    fn unpack<T>(pl: Box<dyn Payload>) -> Result<T, ()> where Self: Sized, T: Payload + Clone;
+    fn as_any(&self) -> &dyn Any;
 }
 
 impl<P: Any + Debug + Sync + Send + Clone + Sized> Payload for P {
-    fn pack<T>(obj: T) -> Box<T> {
+    fn pack<T: Clone>(obj: T) -> Box<T> {
         Box::new(obj)
     }
 
-    fn unpack<T>(pl: Box<T>) -> Result<&'static mut T, ()> {
-        Ok(Box::leak(pl))
+    fn unpack<T: Clone + 'static>(pl: Box<dyn Payload>) -> Result<T, ()> {
+        match pl.as_any().downcast_ref::<T>() {
+            Some(p) => Ok(p.clone()),
+            None => Err(()),
+        }
+    }
+
+     fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
