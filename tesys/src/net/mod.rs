@@ -18,3 +18,6 @@ pub use self::routable::Routable;
 
 pub mod exchange;
 pub use self::exchange::Exchange;
+
+pub mod endpoint;
+pub use self::endpoint::Endpoint;
