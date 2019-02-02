@@ -71,8 +71,6 @@ impl PluginManager {
                 dir = path.to_owned();
             }
 
-            //if Path::new( &format!("{}/{}", path.to_owned(), base) ).is_dir() { plugin_search_paths.push( &format!("{}/{}", path.to_owned(), base)) }
-
             // Append a forward slash if there isn't one
             if dir.chars().last() != Some('/') {
                 dir.push_str("/");
@@ -93,8 +91,9 @@ impl PluginManager {
                 return Ok(format!("{}lib{}.framework/{}", dir, base, base).to_owned());
             }
 
-            if Path::new(&format!("{}lib{}.dll", dir, base)).is_dir() {
-                return Ok(format!("{}lib{}.dll", dir, base).to_owned());
+            // Check for the dll version of the file on Windows. 
+            if Path::new(&format!("{}{}.dll", dir, base)).exists() {
+                return Ok(format!("{}{}.dll", dir, base).to_owned());
             }
         }
 
