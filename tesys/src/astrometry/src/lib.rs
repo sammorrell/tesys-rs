@@ -46,13 +46,6 @@ pub mod frames;
 mod skycoordinate;
 pub use crate::skycoordinate::SkyCoordinate;
 
-pub fn wrap_angle(val: f64) -> f64 {
-    // This is used to wrap the angle between the limits specified within the code.
-    let mut rads = if val < DEFAULT_WRAP_MIN_ANGLE {
-        DEFAULT_WRAP_MIN_ANGLE - (val % DEFAULT_WRAP_MIN_ANGLE)
-    } else {
-        val
-    };
-    rads %= DEFAULT_WRAP_MAX_ANGLE;
-    rads
-}
+// Use the module for unit tests if we want it. 
+#[cfg(test)]
+mod tests;

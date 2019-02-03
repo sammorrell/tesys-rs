@@ -16,6 +16,7 @@ use crate::ARCSEC_PER_DEG;
 use crate::DEG_PER_RAD;
 use crate::MAS_PER_DEG;
 use crate::MAS_PER_RAD;
+use crate::{DEFAULT_WRAP_MIN_ANGLE,DEFAULT_WRAP_MAX_ANGLE};
 
 pub struct Angle {
     _angle: f64, // Measured in radians
@@ -88,6 +89,24 @@ impl Angle {
 
     pub fn tan(&self) -> f64 {
         self._angle.tan()
+    }
+
+    // Wraps the angle contained within the struct to between the default wrap
+    // angle specified within the crate. This should be between 0 and 2 x pi. 
+    pub fn wrap(&self) -> Angle {
+        self.wrap_with_bounds(DEFAULT_WRAP_MIN_ANGLE, DEFAULT_WRAP_MAX_ANGLE)
+    }
+
+    // A more general case of the wrap angle function which will wrap to within arbitrary bounds, 
+    // specified in radians. This is called by the more specific Angle::wrap() function. 
+    pub fn wrap_with_bounds(&self, lbound: f64, ubound: f64) -> Angle {
+        if self._angle < lbound || self._angle > ubound {
+            let mut rads = (self._angle - lbound) % (ubound - lbound);
+            rads = if rads < 0.0 { rads + ubound } else { rads + lbound };
+            Angle { _angle : rads }
+        } else {
+            self.clone()
+        }
     }
 }
 
