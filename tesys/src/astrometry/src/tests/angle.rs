@@ -1,7 +1,12 @@
 use crate::Angle;
 
 #[test]
-fn angle_default_wrap() {
+fn init_from_degrees() {
+    assert_eq!(Angle::new(180.).rad(), std::f64::consts::PI);
+}
+
+#[test]
+fn default_wrap() {
     let test_prec = 1.0E9; // Round to nano degrees to avoid rounding problems. 
     let ang = Angle::new(390.0).wrap();
     let rnd = (ang.deg() * test_prec).round() / test_prec;
@@ -9,7 +14,7 @@ fn angle_default_wrap() {
 }
 
 #[test]
-fn angle_custom_wrap_neg() {
+fn custom_wrap_neg() {
     let test_prec = 1.0E9; // Round to nano degrees to avoid rounding problems. 
     let ang = Angle::new(-100.0).wrap_with_bounds(- std::f64::consts::PI / 2.0, std::f64::consts::PI);
     let rnd = (ang.deg() * test_prec).round() / test_prec;
@@ -18,7 +23,7 @@ fn angle_custom_wrap_neg() {
 
 
 #[test]
-fn angle_custom_wrap_pos() {
+fn custom_wrap_pos() {
     let test_prec = 1.0E9; // Round to nano degrees to avoid rounding problems. 
     let ang = Angle::new(210.0).wrap_with_bounds(- std::f64::consts::PI / 2.0, std::f64::consts::PI);
     let rnd = (ang.deg() * test_prec).round() / test_prec;
@@ -26,7 +31,7 @@ fn angle_custom_wrap_pos() {
 }
 
 #[test]
-fn angle_custom_wrap_inside() {
+fn custom_wrap_inside() {
     let test_prec = 1.0E9; // Round to nano degrees to avoid rounding problems. 
     let ang = Angle::new(-60.0).wrap_with_bounds(- std::f64::consts::PI / 2.0, std::f64::consts::PI);
     let rnd = (ang.deg() * test_prec).round() / test_prec;

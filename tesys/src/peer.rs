@@ -31,7 +31,7 @@ impl Peer {
         };
     }
 
-    pub fn run(&mut self) {
+    pub fn run(&mut self) -> Result<(), ()>{
         self.do_run = true;
         let mut lt = LoopTimer::new(60); // Target polling rate of 60 iter / sec.
 
@@ -39,5 +39,6 @@ impl Peer {
             lt.start();
             lt.end();
         }
+        Ok(())
     }
 }
