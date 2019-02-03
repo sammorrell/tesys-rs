@@ -11,7 +11,7 @@ use tesys::astrometry::frame::CanTransformTo;
 use tesys::astrometry::frames::{FK5, ICRS};
 use tesys::astrometry::{Epoch, Frame, Location, ProperMotion, SkyCoordinate};
 use tesys::Peer;
-use tesys::net::Message;
+use tesys::net::{Message,Route};
 
 fn main() -> Result<(), ()> {
     // Let's first check and see if we have a config file as a command line argument
@@ -49,11 +49,12 @@ fn main() -> Result<(), ()> {
     tesys::loggable::log(&format!("{}", coord.to_sky_position(dt, loc.clone())));
 
     // Testing message
-    let m = Message::new().with_payload(coord.clone()).finish();
+    let m = Message::new().to(Route::from_str("test-peer.test")).with_payload(coord.clone()).finish();
     let dat: SkyCoordinate<ICRS> = match m.get_payload() {
         Ok(p) => p,
         Err(_) => SkyCoordinate::<ICRS>::new(0., 0.),
     };
+    tesys_warn!("{:?}", m);
     tesys_warn!("{:?}", dat);
 
 
