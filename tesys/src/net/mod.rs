@@ -21,3 +21,6 @@ pub use self::exchange::Exchange;
 
 pub mod endpoint;
 pub use self::endpoint::Endpoint;
+
+#[cfg(test)]
+mod tests;
