@@ -5,6 +5,17 @@ rust:
   - nightly
 cache: cargo
 
+# blocklist
+branches:
+  except:
+  - dev
+
+# safelist
+branches:
+  only:
+  - master
+  - stable
+
 script:
   - cargo build --verbose --all
   - cargo test --verbose --all
