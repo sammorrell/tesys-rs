@@ -10,7 +10,7 @@ use tesys::astrometry::SkyCoordinate;
 use tesys::codegen::*;
 use tesys::loggable;
 use tesys::Loggable;
-use tesys::net::{CanHandleMessages, Message, Routable};
+use tesys::net::{CanHandleMessages, Message, Routable, MessageHandler};
 use tesys::Plugin;
 
 // We call into the macros to write the extern C functions
@@ -22,7 +22,7 @@ tesys_plugin_destroy!(ExamplePlugin);
 tesys_plugin!(ExamplePlugin {
     label: String,
     coord: SkyCoordinate<ICRS>,
-    handlers: Vec<&'static StaticHandlerInfo<ExamplePlugin>>,
+    handlers: HandlerTable<ExamplePlugin>,
 });
 
 impl Plugin for ExamplePlugin {
@@ -55,6 +55,12 @@ impl CanHandleMessages for ExamplePlugin {
 
     fn handle(&mut self, handle: String, m: Message) -> Option<Message> {
         None
+    }
+}
+
+impl MessageHandler for ExamplePlugin {
+    fn get_handlers(&self) -> &HandlerTable<ExamplePlugin> {
+        &self.handlers
     }
 }
 

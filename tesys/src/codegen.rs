@@ -1,4 +1,6 @@
-type StaticHandler<P, R> = fn(&mut P) -> Result<R, ()>;
+pub type StaticHandler<P, R> = fn(&mut P) -> Result<R, ()>;
+
+pub type HandlerTable<T> = Vec<&'static StaticHandlerInfo<T>>;
 
 #[allow(dead_code)]
 #[derive(Clone, Debug)]
