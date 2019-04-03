@@ -1,6 +1,3 @@
-use std::{thread, time};
-
-use crate::loggable;
 use crate::loggable::Loggable;
 use crate::timing::LoopTimer;
 use crate::PluginManager;

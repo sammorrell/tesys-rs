@@ -1,4 +1,4 @@
-pub use crate::net::{CanHandleMessages, Exchange};
+pub use crate::net::{CanHandleMessages, MessageHandler, Exchange};
 use std::any::Any;
 use std::fmt::Debug;
 
@@ -56,7 +56,7 @@ macro_rules! tesys_plugin_new {
 	}
 }
 
-pub trait Plugin: Any + Send + Sync + Debug + CanHandleMessages {
+pub trait Plugin: Any + Send + Sync + Debug + CanHandleMessages + MessageHandler {
     fn new() -> Self
     where
         Self: Sized;
