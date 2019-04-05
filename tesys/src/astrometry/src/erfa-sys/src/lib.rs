@@ -274,7 +274,6 @@ fn bindgen_test_layout_eraLDBODY() {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraCal2jd"]
     pub fn eraCal2jd(
         iy: ::std::os::raw::c_int,
         im: ::std::os::raw::c_int,
@@ -284,23 +283,18 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEpb"]
     pub fn eraEpb(dj1: f64, dj2: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEpb2jd"]
     pub fn eraEpb2jd(epb: f64, djm0: *mut f64, djm: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEpj"]
     pub fn eraEpj(dj1: f64, dj2: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEpj2jd"]
     pub fn eraEpj2jd(epj: f64, djm0: *mut f64, djm: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraJd2cal"]
     pub fn eraJd2cal(
         dj1: f64,
         dj2: f64,
@@ -311,7 +305,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraJdcalf"]
     pub fn eraJdcalf(
         ndp: ::std::os::raw::c_int,
         dj1: f64,
@@ -320,11 +313,9 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAb"]
     pub fn eraAb(pnat: *mut f64, v: *mut f64, s: f64, bm1: f64, ppr: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraApcg"]
     pub fn eraApcg(
         date1: f64,
         date2: f64,
@@ -334,11 +325,9 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraApcg13"]
     pub fn eraApcg13(date1: f64, date2: f64, astrom: *mut eraASTROM);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraApci"]
     pub fn eraApci(
         date1: f64,
         date2: f64,
@@ -351,11 +340,9 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraApci13"]
     pub fn eraApci13(date1: f64, date2: f64, astrom: *mut eraASTROM, eo: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraApco"]
     pub fn eraApco(
         date1: f64,
         date2: f64,
@@ -377,7 +364,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraApco13"]
     pub fn eraApco13(
         utc1: f64,
         utc2: f64,
@@ -396,7 +382,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraApcs"]
     pub fn eraApcs(
         date1: f64,
         date2: f64,
@@ -407,19 +392,15 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraApcs13"]
     pub fn eraApcs13(date1: f64, date2: f64, pv: *mut [f64; 3usize], astrom: *mut eraASTROM);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAper"]
     pub fn eraAper(theta: f64, astrom: *mut eraASTROM);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAper13"]
     pub fn eraAper13(ut11: f64, ut12: f64, astrom: *mut eraASTROM);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraApio"]
     pub fn eraApio(
         sp: f64,
         theta: f64,
@@ -434,7 +415,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraApio13"]
     pub fn eraApio13(
         utc1: f64,
         utc2: f64,
@@ -452,7 +432,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAtci13"]
     pub fn eraAtci13(
         rc: f64,
         dc: f64,
@@ -468,7 +447,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAtciq"]
     pub fn eraAtciq(
         rc: f64,
         dc: f64,
@@ -482,7 +460,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAtciqn"]
     pub fn eraAtciqn(
         rc: f64,
         dc: f64,
@@ -498,11 +475,9 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAtciqz"]
     pub fn eraAtciqz(rc: f64, dc: f64, astrom: *mut eraASTROM, ri: *mut f64, di: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAtco13"]
     pub fn eraAtco13(
         rc: f64,
         dc: f64,
@@ -531,7 +506,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAtic13"]
     pub fn eraAtic13(
         ri: f64,
         di: f64,
@@ -543,11 +517,9 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAticq"]
     pub fn eraAticq(ri: f64, di: f64, astrom: *mut eraASTROM, rc: *mut f64, dc: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAticqn"]
     pub fn eraAticqn(
         ri: f64,
         di: f64,
@@ -559,7 +531,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAtio13"]
     pub fn eraAtio13(
         ri: f64,
         di: f64,
@@ -583,7 +554,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAtioq"]
     pub fn eraAtioq(
         ri: f64,
         di: f64,
@@ -596,7 +566,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAtoc13"]
     pub fn eraAtoc13(
         type_: *const ::std::os::raw::c_char,
         ob1: f64,
@@ -618,7 +587,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAtoi13"]
     pub fn eraAtoi13(
         type_: *const ::std::os::raw::c_char,
         ob1: f64,
@@ -640,7 +608,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAtoiq"]
     pub fn eraAtoiq(
         type_: *const ::std::os::raw::c_char,
         ob1: f64,
@@ -651,11 +618,9 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraLd"]
     pub fn eraLd(bm: f64, p: *mut f64, q: *mut f64, e: *mut f64, em: f64, dlim: f64, p1: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraLdn"]
     pub fn eraLdn(
         n: ::std::os::raw::c_int,
         b: *mut eraLDBODY,
@@ -665,11 +630,9 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraLdsun"]
     pub fn eraLdsun(p: *mut f64, e: *mut f64, em: f64, p1: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPmpx"]
     pub fn eraPmpx(
         rc: f64,
         dc: f64,
@@ -683,7 +646,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPmsafe"]
     pub fn eraPmsafe(
         ra1: f64,
         dec1: f64,
@@ -704,7 +666,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPvtob"]
     pub fn eraPvtob(
         elong: f64,
         phi: f64,
@@ -717,11 +678,9 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraRefco"]
     pub fn eraRefco(phpa: f64, tc: f64, rh: f64, wl: f64, refa: *mut f64, refb: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEpv00"]
     pub fn eraEpv00(
         date1: f64,
         date2: f64,
@@ -730,7 +689,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPlan94"]
     pub fn eraPlan94(
         date1: f64,
         date2: f64,
@@ -739,67 +697,51 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFad03"]
     pub fn eraFad03(t: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFae03"]
     pub fn eraFae03(t: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFaf03"]
     pub fn eraFaf03(t: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFaju03"]
     pub fn eraFaju03(t: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFal03"]
     pub fn eraFal03(t: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFalp03"]
     pub fn eraFalp03(t: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFama03"]
     pub fn eraFama03(t: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFame03"]
     pub fn eraFame03(t: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFane03"]
     pub fn eraFane03(t: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFaom03"]
     pub fn eraFaom03(t: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFapa03"]
     pub fn eraFapa03(t: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFasa03"]
     pub fn eraFasa03(t: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFaur03"]
     pub fn eraFaur03(t: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFave03"]
     pub fn eraFave03(t: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraBi00"]
     pub fn eraBi00(dpsibi: *mut f64, depsbi: *mut f64, dra: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraBp00"]
     pub fn eraBp00(
         date1: f64,
         date2: f64,
@@ -809,7 +751,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraBp06"]
     pub fn eraBp06(
         date1: f64,
         date2: f64,
@@ -819,35 +760,27 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraBpn2xy"]
     pub fn eraBpn2xy(rbpn: *mut [f64; 3usize], x: *mut f64, y: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraC2i00a"]
     pub fn eraC2i00a(date1: f64, date2: f64, rc2i: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraC2i00b"]
     pub fn eraC2i00b(date1: f64, date2: f64, rc2i: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraC2i06a"]
     pub fn eraC2i06a(date1: f64, date2: f64, rc2i: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraC2ibpn"]
     pub fn eraC2ibpn(date1: f64, date2: f64, rbpn: *mut [f64; 3usize], rc2i: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraC2ixy"]
     pub fn eraC2ixy(date1: f64, date2: f64, x: f64, y: f64, rc2i: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraC2ixys"]
     pub fn eraC2ixys(x: f64, y: f64, s: f64, rc2i: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraC2t00a"]
     pub fn eraC2t00a(
         tta: f64,
         ttb: f64,
@@ -859,7 +792,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraC2t00b"]
     pub fn eraC2t00b(
         tta: f64,
         ttb: f64,
@@ -871,7 +803,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraC2t06a"]
     pub fn eraC2t06a(
         tta: f64,
         ttb: f64,
@@ -883,7 +814,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraC2tcio"]
     pub fn eraC2tcio(
         rc2i: *mut [f64; 3usize],
         era: f64,
@@ -892,7 +822,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraC2teqx"]
     pub fn eraC2teqx(
         rbpn: *mut [f64; 3usize],
         gst: f64,
@@ -901,7 +830,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraC2tpe"]
     pub fn eraC2tpe(
         tta: f64,
         ttb: f64,
@@ -915,7 +843,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraC2txy"]
     pub fn eraC2txy(
         tta: f64,
         ttb: f64,
@@ -929,83 +856,63 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEo06a"]
     pub fn eraEo06a(date1: f64, date2: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEors"]
     pub fn eraEors(rnpb: *mut [f64; 3usize], s: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFw2m"]
     pub fn eraFw2m(gamb: f64, phib: f64, psi: f64, eps: f64, r: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFw2xy"]
     pub fn eraFw2xy(gamb: f64, phib: f64, psi: f64, eps: f64, x: *mut f64, y: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraLtp"]
     pub fn eraLtp(epj: f64, rp: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraLtpb"]
     pub fn eraLtpb(epj: f64, rpb: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraLtpecl"]
     pub fn eraLtpecl(epj: f64, vec: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraLtpequ"]
     pub fn eraLtpequ(epj: f64, veq: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraNum00a"]
     pub fn eraNum00a(date1: f64, date2: f64, rmatn: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraNum00b"]
     pub fn eraNum00b(date1: f64, date2: f64, rmatn: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraNum06a"]
     pub fn eraNum06a(date1: f64, date2: f64, rmatn: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraNumat"]
     pub fn eraNumat(epsa: f64, dpsi: f64, deps: f64, rmatn: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraNut00a"]
     pub fn eraNut00a(date1: f64, date2: f64, dpsi: *mut f64, deps: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraNut00b"]
     pub fn eraNut00b(date1: f64, date2: f64, dpsi: *mut f64, deps: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraNut06a"]
     pub fn eraNut06a(date1: f64, date2: f64, dpsi: *mut f64, deps: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraNut80"]
     pub fn eraNut80(date1: f64, date2: f64, dpsi: *mut f64, deps: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraNutm80"]
     pub fn eraNutm80(date1: f64, date2: f64, rmatn: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraObl06"]
     pub fn eraObl06(date1: f64, date2: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraObl80"]
     pub fn eraObl80(date1: f64, date2: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraP06e"]
     pub fn eraP06e(
         date1: f64,
         date2: f64,
@@ -1028,11 +935,9 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPb06"]
     pub fn eraPb06(date1: f64, date2: f64, bzeta: *mut f64, bz: *mut f64, btheta: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPfw06"]
     pub fn eraPfw06(
         date1: f64,
         date2: f64,
@@ -1043,19 +948,15 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPmat00"]
     pub fn eraPmat00(date1: f64, date2: f64, rbp: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPmat06"]
     pub fn eraPmat06(date1: f64, date2: f64, rbp: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPmat76"]
     pub fn eraPmat76(date1: f64, date2: f64, rmatp: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPn00"]
     pub fn eraPn00(
         date1: f64,
         date2: f64,
@@ -1070,7 +971,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPn00a"]
     pub fn eraPn00a(
         date1: f64,
         date2: f64,
@@ -1085,7 +985,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPn00b"]
     pub fn eraPn00b(
         date1: f64,
         date2: f64,
@@ -1100,7 +999,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPn06"]
     pub fn eraPn06(
         date1: f64,
         date2: f64,
@@ -1115,7 +1013,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPn06a"]
     pub fn eraPn06a(
         date1: f64,
         date2: f64,
@@ -1130,31 +1027,24 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPnm00a"]
     pub fn eraPnm00a(date1: f64, date2: f64, rbpn: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPnm00b"]
     pub fn eraPnm00b(date1: f64, date2: f64, rbpn: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPnm06a"]
     pub fn eraPnm06a(date1: f64, date2: f64, rnpb: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPnm80"]
     pub fn eraPnm80(date1: f64, date2: f64, rmatpn: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPom00"]
     pub fn eraPom00(xp: f64, yp: f64, sp: f64, rpom: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPr00"]
     pub fn eraPr00(date1: f64, date2: f64, dpsipr: *mut f64, depspr: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPrec76"]
     pub fn eraPrec76(
         date01: f64,
         date02: f64,
@@ -1166,107 +1056,81 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraS00"]
     pub fn eraS00(date1: f64, date2: f64, x: f64, y: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraS00a"]
     pub fn eraS00a(date1: f64, date2: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraS00b"]
     pub fn eraS00b(date1: f64, date2: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraS06"]
     pub fn eraS06(date1: f64, date2: f64, x: f64, y: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraS06a"]
     pub fn eraS06a(date1: f64, date2: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraSp00"]
     pub fn eraSp00(date1: f64, date2: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraXy06"]
     pub fn eraXy06(date1: f64, date2: f64, x: *mut f64, y: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraXys00a"]
     pub fn eraXys00a(date1: f64, date2: f64, x: *mut f64, y: *mut f64, s: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraXys00b"]
     pub fn eraXys00b(date1: f64, date2: f64, x: *mut f64, y: *mut f64, s: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraXys06a"]
     pub fn eraXys06a(date1: f64, date2: f64, x: *mut f64, y: *mut f64, s: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEe00"]
     pub fn eraEe00(date1: f64, date2: f64, epsa: f64, dpsi: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEe00a"]
     pub fn eraEe00a(date1: f64, date2: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEe00b"]
     pub fn eraEe00b(date1: f64, date2: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEe06a"]
     pub fn eraEe06a(date1: f64, date2: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEect00"]
     pub fn eraEect00(date1: f64, date2: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEqeq94"]
     pub fn eraEqeq94(date1: f64, date2: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEra00"]
     pub fn eraEra00(dj1: f64, dj2: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraGmst00"]
     pub fn eraGmst00(uta: f64, utb: f64, tta: f64, ttb: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraGmst06"]
     pub fn eraGmst06(uta: f64, utb: f64, tta: f64, ttb: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraGmst82"]
     pub fn eraGmst82(dj1: f64, dj2: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraGst00a"]
     pub fn eraGst00a(uta: f64, utb: f64, tta: f64, ttb: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraGst00b"]
     pub fn eraGst00b(uta: f64, utb: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraGst06"]
     pub fn eraGst06(uta: f64, utb: f64, tta: f64, ttb: f64, rnpb: *mut [f64; 3usize]) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraGst06a"]
     pub fn eraGst06a(uta: f64, utb: f64, tta: f64, ttb: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraGst94"]
     pub fn eraGst94(uta: f64, utb: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPvstar"]
     pub fn eraPvstar(
         pv: *mut [f64; 3usize],
         ra: *mut f64,
@@ -1278,7 +1142,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraStarpv"]
     pub fn eraStarpv(
         ra: f64,
         dec: f64,
@@ -1290,7 +1153,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFk52h"]
     pub fn eraFk52h(
         r5: f64,
         d5: f64,
@@ -1307,15 +1169,12 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFk5hip"]
     pub fn eraFk5hip(r5h: *mut [f64; 3usize], s5h: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraFk5hz"]
     pub fn eraFk5hz(r5: f64, d5: f64, date1: f64, date2: f64, rh: *mut f64, dh: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraH2fk5"]
     pub fn eraH2fk5(
         rh: f64,
         dh: f64,
@@ -1332,7 +1191,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraHfk5z"]
     pub fn eraHfk5z(
         rh: f64,
         dh: f64,
@@ -1345,7 +1203,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraStarpm"]
     pub fn eraStarpm(
         ra1: f64,
         dec1: f64,
@@ -1366,43 +1223,33 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEceq06"]
     pub fn eraEceq06(date1: f64, date2: f64, dl: f64, db: f64, dr: *mut f64, dd: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEcm06"]
     pub fn eraEcm06(date1: f64, date2: f64, rm: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEqec06"]
     pub fn eraEqec06(date1: f64, date2: f64, dr: f64, dd: f64, dl: *mut f64, db: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraLteceq"]
     pub fn eraLteceq(epj: f64, dl: f64, db: f64, dr: *mut f64, dd: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraLtecm"]
     pub fn eraLtecm(epj: f64, rm: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraLteqec"]
     pub fn eraLteqec(epj: f64, dr: f64, dd: f64, dl: *mut f64, db: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraG2icrs"]
     pub fn eraG2icrs(dl: f64, db: f64, dr: *mut f64, dd: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraIcrs2g"]
     pub fn eraIcrs2g(dr: f64, dd: f64, dl: *mut f64, db: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraEform"]
     pub fn eraEform(n: ::std::os::raw::c_int, a: *mut f64, f: *mut f64) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraGc2gd"]
     pub fn eraGc2gd(
         n: ::std::os::raw::c_int,
         xyz: *mut f64,
@@ -1412,7 +1259,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraGc2gde"]
     pub fn eraGc2gde(
         a: f64,
         f: f64,
@@ -1423,7 +1269,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraGd2gc"]
     pub fn eraGd2gc(
         n: ::std::os::raw::c_int,
         elong: f64,
@@ -1433,7 +1278,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraGd2gce"]
     pub fn eraGd2gce(
         a: f64,
         f: f64,
@@ -1444,7 +1288,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraD2dtf"]
     pub fn eraD2dtf(
         scale: *const ::std::os::raw::c_char,
         ndp: ::std::os::raw::c_int,
@@ -1457,7 +1300,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraDat"]
     pub fn eraDat(
         iy: ::std::os::raw::c_int,
         im: ::std::os::raw::c_int,
@@ -1467,11 +1309,9 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraDtdb"]
     pub fn eraDtdb(date1: f64, date2: f64, ut: f64, elong: f64, u: f64, v: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraDtf2d"]
     pub fn eraDtf2d(
         scale: *const ::std::os::raw::c_char,
         iy: ::std::os::raw::c_int,
@@ -1485,11 +1325,9 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraTaitt"]
     pub fn eraTaitt(tai1: f64, tai2: f64, tt1: *mut f64, tt2: *mut f64) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraTaiut1"]
     pub fn eraTaiut1(
         tai1: f64,
         tai2: f64,
@@ -1499,26 +1337,21 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraTaiutc"]
     pub fn eraTaiutc(tai1: f64, tai2: f64, utc1: *mut f64, utc2: *mut f64)
         -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraTcbtdb"]
     pub fn eraTcbtdb(tcb1: f64, tcb2: f64, tdb1: *mut f64, tdb2: *mut f64)
         -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraTcgtt"]
     pub fn eraTcgtt(tcg1: f64, tcg2: f64, tt1: *mut f64, tt2: *mut f64) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraTdbtcb"]
     pub fn eraTdbtcb(tdb1: f64, tdb2: f64, tcb1: *mut f64, tcb2: *mut f64)
         -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraTdbtt"]
     pub fn eraTdbtt(
         tdb1: f64,
         tdb2: f64,
@@ -1528,15 +1361,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraTttai"]
     pub fn eraTttai(tt1: f64, tt2: f64, tai1: *mut f64, tai2: *mut f64) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraTttcg"]
     pub fn eraTttcg(tt1: f64, tt2: f64, tcg1: *mut f64, tcg2: *mut f64) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraTttdb"]
     pub fn eraTttdb(
         tt1: f64,
         tt2: f64,
@@ -1546,7 +1376,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraTtut1"]
     pub fn eraTtut1(
         tt1: f64,
         tt2: f64,
@@ -1556,7 +1385,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraUt1tai"]
     pub fn eraUt1tai(
         ut11: f64,
         ut12: f64,
@@ -1566,7 +1394,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraUt1tt"]
     pub fn eraUt1tt(
         ut11: f64,
         ut12: f64,
@@ -1576,7 +1403,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraUt1utc"]
     pub fn eraUt1utc(
         ut11: f64,
         ut12: f64,
@@ -1586,12 +1412,10 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraUtctai"]
     pub fn eraUtctai(utc1: f64, utc2: f64, tai1: *mut f64, tai2: *mut f64)
         -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraUtcut1"]
     pub fn eraUtcut1(
         utc1: f64,
         utc2: f64,
@@ -1601,7 +1425,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraA2af"]
     pub fn eraA2af(
         ndp: ::std::os::raw::c_int,
         angle: f64,
@@ -1610,7 +1433,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraA2tf"]
     pub fn eraA2tf(
         ndp: ::std::os::raw::c_int,
         angle: f64,
@@ -1619,7 +1441,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAf2a"]
     pub fn eraAf2a(
         s: ::std::os::raw::c_char,
         ideg: ::std::os::raw::c_int,
@@ -1629,15 +1450,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAnp"]
     pub fn eraAnp(a: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraAnpm"]
     pub fn eraAnpm(a: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraD2tf"]
     pub fn eraD2tf(
         ndp: ::std::os::raw::c_int,
         days: f64,
@@ -1646,7 +1464,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraTf2a"]
     pub fn eraTf2a(
         s: ::std::os::raw::c_char,
         ihour: ::std::os::raw::c_int,
@@ -1656,7 +1473,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraTf2d"]
     pub fn eraTf2d(
         s: ::std::os::raw::c_char,
         ihour: ::std::os::raw::c_int,
@@ -1666,111 +1482,84 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraRx"]
     pub fn eraRx(phi: f64, r: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraRy"]
     pub fn eraRy(theta: f64, r: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraRz"]
     pub fn eraRz(psi: f64, r: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraCp"]
     pub fn eraCp(p: *mut f64, c: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraCpv"]
     pub fn eraCpv(pv: *mut [f64; 3usize], c: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraCr"]
     pub fn eraCr(r: *mut [f64; 3usize], c: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraP2pv"]
     pub fn eraP2pv(p: *mut f64, pv: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPv2p"]
     pub fn eraPv2p(pv: *mut [f64; 3usize], p: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraIr"]
     pub fn eraIr(r: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraZp"]
     pub fn eraZp(p: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraZpv"]
     pub fn eraZpv(pv: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraZr"]
     pub fn eraZr(r: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraRxr"]
     pub fn eraRxr(a: *mut [f64; 3usize], b: *mut [f64; 3usize], atb: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraTr"]
     pub fn eraTr(r: *mut [f64; 3usize], rt: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraRxp"]
     pub fn eraRxp(r: *mut [f64; 3usize], p: *mut f64, rp: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraRxpv"]
     pub fn eraRxpv(r: *mut [f64; 3usize], pv: *mut [f64; 3usize], rpv: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraTrxp"]
     pub fn eraTrxp(r: *mut [f64; 3usize], p: *mut f64, trp: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraTrxpv"]
     pub fn eraTrxpv(r: *mut [f64; 3usize], pv: *mut [f64; 3usize], trpv: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraRm2v"]
     pub fn eraRm2v(r: *mut [f64; 3usize], w: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraRv2m"]
     pub fn eraRv2m(w: *mut f64, r: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPap"]
     pub fn eraPap(a: *mut f64, b: *mut f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPas"]
     pub fn eraPas(al: f64, ap: f64, bl: f64, bp: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraSepp"]
     pub fn eraSepp(a: *mut f64, b: *mut f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraSeps"]
     pub fn eraSeps(al: f64, ap: f64, bl: f64, bp: f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraC2s"]
     pub fn eraC2s(p: *mut f64, theta: *mut f64, phi: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraP2s"]
     pub fn eraP2s(p: *mut f64, theta: *mut f64, phi: *mut f64, r: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPv2s"]
     pub fn eraPv2s(
         pv: *mut [f64; 3usize],
         theta: *mut f64,
@@ -1782,102 +1571,77 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}_eraS2c"]
     pub fn eraS2c(theta: f64, phi: f64, c: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraS2p"]
     pub fn eraS2p(theta: f64, phi: f64, r: f64, p: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraS2pv"]
     pub fn eraS2pv(theta: f64, phi: f64, r: f64, td: f64, pd: f64, rd: f64, pv: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPdp"]
     pub fn eraPdp(a: *mut f64, b: *mut f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPm"]
     pub fn eraPm(p: *mut f64) -> f64;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPmp"]
     pub fn eraPmp(a: *mut f64, b: *mut f64, amb: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPn"]
     pub fn eraPn(p: *mut f64, r: *mut f64, u: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPpp"]
     pub fn eraPpp(a: *mut f64, b: *mut f64, apb: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPpsp"]
     pub fn eraPpsp(a: *mut f64, s: f64, b: *mut f64, apsb: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPvdpv"]
     pub fn eraPvdpv(a: *mut [f64; 3usize], b: *mut [f64; 3usize], adb: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPvm"]
     pub fn eraPvm(pv: *mut [f64; 3usize], r: *mut f64, s: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPvmpv"]
     pub fn eraPvmpv(a: *mut [f64; 3usize], b: *mut [f64; 3usize], amb: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPvppv"]
     pub fn eraPvppv(a: *mut [f64; 3usize], b: *mut [f64; 3usize], apb: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPvu"]
     pub fn eraPvu(dt: f64, pv: *mut [f64; 3usize], upv: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPvup"]
     pub fn eraPvup(dt: f64, pv: *mut [f64; 3usize], p: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPvxpv"]
     pub fn eraPvxpv(a: *mut [f64; 3usize], b: *mut [f64; 3usize], axb: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraPxp"]
     pub fn eraPxp(a: *mut f64, b: *mut f64, axb: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraS2xpv"]
     pub fn eraS2xpv(s1: f64, s2: f64, pv: *mut [f64; 3usize], spv: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraSxp"]
     pub fn eraSxp(s: f64, p: *mut f64, sp: *mut f64);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraSxpv"]
     pub fn eraSxpv(s: f64, pv: *mut [f64; 3usize], spv: *mut [f64; 3usize]);
 }
 extern "C" {
-    #[link_name = "\u{1}_eraVersion"]
     pub fn eraVersion() -> *const ::std::os::raw::c_char;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraVersionMajor"]
     pub fn eraVersionMajor() -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraVersionMinor"]
     pub fn eraVersionMinor() -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraVersionMicro"]
     pub fn eraVersionMicro() -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_eraSofaVersion"]
     pub fn eraSofaVersion() -> *const ::std::os::raw::c_char;
 }

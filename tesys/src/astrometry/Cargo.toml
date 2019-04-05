@@ -7,4 +7,3 @@ edition = "2018"
 [dependencies]
 erfa-sys = { path = "src/erfa-sys/" }
 chrono = "*"
-nalgebra = "*"

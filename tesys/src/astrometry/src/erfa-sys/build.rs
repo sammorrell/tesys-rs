@@ -2,11 +2,15 @@ extern crate cc;
 extern crate glob;
 extern crate regex;
 
+use std::env;
 use std::fs::read_to_string;
 use self::glob::glob;
 use self::regex::Regex;
 
 fn main() {
+    let file_blacklist = vec!(["vendor/erfa/src/t_erfa_c.c"]); // Remove the test file, so we don't get linker errors of repeated main(). 
+    let project_dir = env::var("CARGO_MANIFEST_DIR").unwrap(); // Get the output directory. 
+
     let erfa_dir = "vendor/erfa";
     let erfa_src_dir = format!("{}/src", erfa_dir);
     let config_file = format!("{}/configure.ac", erfa_dir);
@@ -15,7 +19,12 @@ fn main() {
     // Get the files from the erfa directory and add them to the vector of C files. 
     let erfa_c_glob_pattern = format!("{}/*.c", erfa_src_dir);
     for e in glob(erfa_c_glob_pattern.as_str()).expect("Failed to get ERFA C files. ") {
-        c_files.push(format!("{}", e.unwrap().display()));
+        let file_str = format!("{}", e.unwrap().display());
+        
+        // Check for blacklisted files. If they aren't, add them to the build. 
+        if !(file_blacklist.contains( &[file_str.as_str()] )) {
+            c_files.push(file_str);
+        }
     }
 
     // Read version numbers from the configure.ac
@@ -49,6 +58,8 @@ fn main() {
         .define("SOFA_VERSION", Some(sofa_version.as_str()))
         .include(erfa_src_dir)
         .compile("erfa");
-
-    println!("rustc-link-lib=erfa");
+    
+    // Setup the linker options
+    println!("cargo:rustc-link-search=native={}", project_dir); 
+    println!("cargo:rustc-link-lib=erfa"); 
 }
