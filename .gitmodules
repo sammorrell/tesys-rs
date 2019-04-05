@@ -1,0 +1,3 @@
+[submodule "tesys/src/astrometry/src/erfa-sys/vendor/erfa"]
+	path = tesys/src/astrometry/src/erfa-sys/vendor/erfa
+	url = https://github.com/liberfa/erfa.git
