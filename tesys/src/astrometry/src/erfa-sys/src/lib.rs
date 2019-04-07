@@ -3,5 +3,10 @@
 #![allow(non_snake_case)]
 
 pub mod bindings;
+pub mod astrom;
 
 pub mod astrometry;
+
+// Use the module for unit tests if we want it. 
+#[cfg(test)]
+mod tests;

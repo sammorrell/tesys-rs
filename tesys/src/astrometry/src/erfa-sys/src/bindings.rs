@@ -400,9 +400,9 @@ extern "C" {
     pub fn eraApcs(
         date1: f64,
         date2: f64,
-        pv: *mut [f64; 3usize],
-        ebpv: *mut [f64; 3usize],
-        ehp: *mut f64,
+        pv: *mut [[f64; 2usize]; 3usize],
+        ebpv: *mut [[f64; 2usize]; 3usize],
+        ehp: *mut [f64; 3usize],
         astrom: *mut eraASTROM,
     );
 }
