@@ -13,7 +13,7 @@ pub struct CoordinateTransform<F: Frame, T: Frame> {
 }
 
 impl<F: Frame, T: Frame> CoordinateTransform<F, T> {
-    pub fn new(coords: SkyCoordinate<F>) -> CoordinateTransform<F, T> {
+    pub fn new<'a>(coords: SkyCoordinate<F>) -> CoordinateTransform<F, T> {
         CoordinateTransform {
             coords: coords,
             from: F::new(),
@@ -23,15 +23,13 @@ impl<F: Frame, T: Frame> CoordinateTransform<F, T> {
         }
     }
 
-    pub fn at(self, _dt: DateTime<Utc>) -> CoordinateTransform<F, T> {
-        let mut ret = self.clone();
-        ret.at = _dt;
-        ret
+    pub fn at<'a>(&'a mut self, _dt: DateTime<Utc>) -> &'a mut CoordinateTransform<F, T> {
+        self.at = _dt;
+        self
     }
 
-    pub fn with_location(self, _loc: Location) -> CoordinateTransform<F, T> {
-        let mut ret = self.clone();
-        ret.loc = _loc;
-        ret
+    pub fn with_location<'a>(&'a mut self, _loc: Location) -> &'a mut CoordinateTransform<F, T> {
+        self.loc = _loc;
+        self
     }
 }
