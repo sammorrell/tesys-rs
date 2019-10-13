@@ -76,28 +76,30 @@ impl PluginManager {
                 dir.push_str("/");
             }
 
-            // First let's check for a .so file on UNIX type systems
-            if Path::new(&format!("{}lib{}.so", dir, base)).exists() {
-                return Ok(format!("{}lib{}.so", dir, base).to_owned());
-            }
+            if cfg!(target_os = "macos") {
+                // Now we check for another favourite, dylib.
+                if Path::new(&format!("{}lib{}.dylib", dir, base)).exists() {
+                    return Ok(format!("{}lib{}.dylib", dir, base).to_owned());
+                }
 
-            // Now we check for another favourite, dylib.
-            if Path::new(&format!("{}lib{}.dylib", dir, base)).exists() {
-                return Ok(format!("{}lib{}.dylib", dir, base).to_owned());
-            }
-
-            // Now let's check for a framework, and correct the path accordingly to actually get the lib
-            if Path::new(&format!("{}lib{}.framework", dir, base)).is_dir() {
-                return Ok(format!("{}lib{}.framework/{}", dir, base, base).to_owned());
-            }
-
-            // Check for the dll version of the file on Windows. 
-            if Path::new(&format!("{}{}.dll", dir, base)).exists() {
-                return Ok(format!("{}{}.dll", dir, base).to_owned());
+                // Now let's check for a framework, and correct the path accordingly to actually get the lib
+                if Path::new(&format!("{}lib{}.framework", dir, base)).is_dir() {
+                    return Ok(format!("{}lib{}.framework/{}", dir, base, base).to_owned());
+                }
+            } else if cfg!(target_os = "windows") {
+                // Check for the dll version of the file on Windows.
+                if Path::new(&format!("{}{}.dll", dir, base)).exists() {
+                    return Ok(format!("{}{}.dll", dir, base).to_owned());
+                }
+            } else{
+                // First let's check for a .so file on UNIX type systems
+                if Path::new(&format!("{}lib{}.so", dir, base)).exists() {
+                    return Ok(format!("{}lib{}.so", dir, base).to_owned());
+                }
             }
         }
 
-        tesys_err!("Unable to find resolve plugin '{}'.", lib);
+        tesys_err!("Unable to resolve plugin '{}'.", lib);
         Err(())
     }
 
