@@ -1,6 +1,6 @@
-use crate::net::{Message,Payload,Route};
+use crate::net::{Message,Route};
 use crate::astrometry::frames::{FK5, ICRS};
-use crate::astrometry::{Epoch, Frame, Location, ProperMotion, SkyCoordinate};
+use crate::astrometry::{Epoch, SkyCoordinate};
 
 // This test is designed to check that we can return something of the correct type from a message payload. 
 #[test]

@@ -25,19 +25,19 @@ impl<P: Any + Debug + Sync + Send + Clone + Sized> Payload for P {
 }
 
 pub trait PayloadClone {
-    fn clone_payload(&self) -> Box<Payload>;
+    fn clone_payload(&self) -> Box<dyn Payload>;
 }
 
 impl<T> PayloadClone for T
 where
     T: 'static + Payload + Clone,
 {
-    fn clone_payload(&self) -> Box<Payload> {
+    fn clone_payload(&self) -> Box<dyn Payload> {
         Box::new(self.clone())
     }
 }
 
-impl Clone for Box<Payload> {
+impl Clone for Box<dyn Payload> {
     fn clone(&self) -> Self {
         self.clone_payload()
     }

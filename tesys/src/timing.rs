@@ -1,5 +1,5 @@
 use std::time::{Duration, Instant};
-use std::{thread, time};
+use std::{thread};
 
 #[derive(Debug)]
 pub struct LoopTimer {

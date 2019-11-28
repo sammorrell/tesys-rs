@@ -1,17 +1,7 @@
-extern crate chrono;
-#[macro_use]
-extern crate tesys;
 pub use tesys::loggable;
 
-use chrono::prelude::*;
-use chrono::Local;
 use std::env;
-use tesys::astrometry::datetime::*;
-use tesys::astrometry::frame::CanTransformTo;
-use tesys::astrometry::frames::{FK5, ICRS};
-use tesys::astrometry::{Epoch, Frame, Location, ProperMotion, SkyCoordinate};
 use tesys::Peer;
-use tesys::net::{Message,Route};
 
 fn main() -> Result<(), ()> {
     // Let's first check and see if we have a config file as a command line argument

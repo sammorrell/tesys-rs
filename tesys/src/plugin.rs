@@ -2,11 +2,11 @@ pub use crate::net::{CanHandleMessages, MessageHandler, Exchange};
 use std::any::Any;
 use std::fmt::Debug;
 
-pub const PLUGIN_CREATE_SYMBOL: &[u8] = b"_create_plugin";
-pub const PLUGIN_DESTROY_SYMBOL: &[u8] = b"_destroy_plugin";
+pub const PLUGIN_CREATE_SYMBOL: &str = "_create_plugin";
+pub const PLUGIN_DESTROY_SYMBOL: &str = "_destroy_plugin";
 
-pub type PluginCreate = unsafe fn() -> *mut Plugin;
-pub type PluginDestroy = unsafe fn(*mut Plugin);
+pub type PluginCreate = unsafe fn() -> *mut dyn Plugin;
+pub type PluginDestroy = unsafe fn(*mut dyn Plugin);
 
 #[macro_export]
 macro_rules! tesys_plugin_create {

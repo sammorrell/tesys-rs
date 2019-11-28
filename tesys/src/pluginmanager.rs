@@ -13,15 +13,15 @@ pub struct PluginManager {
     plugin_search_paths: Vec<&'static str>,
 
     // Let's get an instance of a router so that we can route to our plugins
-    router: Router,
+    _router: Router,
 }
 
 impl PluginManager {
     pub fn new() -> PluginManager {
         let pl = PluginManager {
             hosts: Vec::new(),
-            plugin_search_paths: vec!["./"],
-            router: Router::new(),
+            plugin_search_paths: vec!["./"], // By default, we should add the local directory. 
+            _router: Router::new(),
         };
 
         pl // Return our new plugin manager instance

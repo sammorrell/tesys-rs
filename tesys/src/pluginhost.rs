@@ -1,7 +1,6 @@
-use std::borrow::BorrowMut;
 use std::sync::mpsc::{Receiver, Sender};
 use std::sync::{Arc, Mutex};
-use std::{thread, time};
+use std::{thread};
 
 extern crate libloading;
 use self::libloading::{Library, Symbol};
@@ -30,7 +29,7 @@ pub struct PluginHost {
 
 impl CanHandleMessages for PluginHost {
     fn can_handle(&self, handle: String) -> bool {
-        let mut loc_self = self.inner.lock().unwrap();
+        let loc_self = self.inner.lock().unwrap();
         loc_self.can_handle(handle)
     }
 
@@ -52,7 +51,7 @@ impl Routable for PluginHost {
     }
 
     fn get_handle(&self) -> String {
-        let mut loc_self = self.inner.lock().unwrap();
+        let loc_self = self.inner.lock().unwrap();
         loc_self.get_handle()
     }
 }
@@ -109,7 +108,7 @@ impl PluginHost {
                 self.library = Some(l);
                 match &self.library {
                 	None => Err(format!("Unable to get _create_plugin() from plugin: Library property of PluginHost is None. ").to_string()),
-                	Some(lib) => match lib.get(plugin::PLUGIN_CREATE_SYMBOL) {
+                	Some(lib) => match lib.get(plugin::PLUGIN_CREATE_SYMBOL.as_bytes()) {
 	                    Ok(sym) => {
 	                        let func = sym as Symbol<plugin::PluginCreate>;
 	                        let pg_raw = func();
@@ -129,7 +128,7 @@ impl PluginHost {
 #[derive(Loggable)]
 struct PluginHostContext {
     run_mode: RunMode,
-    pub pg: Option<Box<Plugin>>,
+    pub pg: Option<Box<dyn Plugin>>,
     do_run: bool,
     inlet: Option<Mutex<Inlet>>,
     outlet: Option<Mutex<Outlet>>,
@@ -161,7 +160,7 @@ impl PluginHostContext {
         self.run_mode = rm;
     }
 
-    pub fn set_plugin(&mut self, pg: Box<Plugin>) {
+    pub fn set_plugin(&mut self, pg: Box<dyn Plugin>) {
         self.pg = Some(pg);
     }
 }

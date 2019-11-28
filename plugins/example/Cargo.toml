@@ -6,7 +6,7 @@ authors = ["Sam Morrell <samuelmorrell@gmail.com>"]
 [lib]
 name = "tesys_example_plugin"
 path = "src/lib.rs"
-crate-type = ["lib", "dylib"]
+crate-type = ["lib", "cdylib"]
 
 [dependencies]
 tesys = { path = "../../tesys/"}
