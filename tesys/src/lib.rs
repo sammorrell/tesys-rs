@@ -6,6 +6,8 @@ extern crate tesys_derive;
 #[macro_use]
 pub mod loggable;
 pub use crate::loggable::Loggable;
+pub mod conf;
+pub use crate::conf::TesysConfiguration;
 
 pub extern crate tesys_astrometry as astrometry;
 

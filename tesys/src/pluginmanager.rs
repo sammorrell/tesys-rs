@@ -27,7 +27,7 @@ impl PluginManager {
         pl // Return our new plugin manager instance
     }
 
-    pub fn load(&mut self, id: &'static str) -> Result<(), String> {
+    pub fn load(&mut self, id: &str) -> Result<(), String> {
         match self.resolve_plugin_lib(id) {
             Ok(path) => match PluginHost::load(path.to_string()) {
                 Ok(mut pgh) => {
@@ -43,7 +43,7 @@ impl PluginManager {
         }
     }
 
-    fn resolve_plugin_lib(&self, lib: &'static str) -> Result<String, ()> {
+    fn resolve_plugin_lib(&self, lib: &str) -> Result<String, ()> {
         let plugin_search_paths = self.plugin_search_paths.clone();
         let mut base = String::new();
         let mut dir = String::new();
@@ -99,7 +99,6 @@ impl PluginManager {
             }
         }
 
-        tesys_err!("Unable to resolve plugin '{}'.", lib);
         Err(())
     }
 
